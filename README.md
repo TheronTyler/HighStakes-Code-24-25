@@ -30,8 +30,11 @@ Our general decision-making process is as follows. First, the problem is identif
 
 Main roles:
 __*Coders*__ — Our main coder is Theron. Aleia and Hunter learn alongside Theron how to code more complex code in Visual Studio Code (VS Code) when Theron cannot attend meetings. 
+
 __*Builders*__ — Layne, Aleia, and Ethan will help each other build the robot exactly as the CAD has been done unless they are unable to copy the CAD due to functional issues. They will tweak the robot designs after they have been completed and fix any minor issues that appear. 
+
 __*Documentor*__ - Aleia is the head notebook, with Theron in training to become the co-notebook lead. They will coordinate notebook entries with team members, correct formatting, and document meeting notes in the notebook. 
+
 __*Scouter*__ - Hunter and Aleia will be in charge of scouting. Aleia will do pre-competition scouting and Hunter will do scouting at the competition by observing all matches played at said competition. 
 
 ## License
