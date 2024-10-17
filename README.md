@@ -2,8 +2,9 @@
 
 VEX Robotics Competition Team 3017D Diffusion's Code for the 2024-25 Game: High Stakes
 
-## TEAM GUIDELINES
-
+<details closed>
+<summary>TEAM GUIDELINES</summary>
+<br>
 Team Norms.
 When a teammate is expected to be absent, they will notify the rest of the team before their absence to see what they can do while they are gone. The team will delegate tasks the absent members cannot perform to each other. 
 
@@ -36,6 +37,8 @@ __*Builders*__ — Layne, Aleia, and Ethan will help each other build the robot 
 __*Documentor*__ - Aleia is the head notebook, with Theron training to become the co-notebook lead. They will coordinate notebook entries with team members, correct formatting, and document meeting notes in the notebook. 
 
 __*Scouter*__—Hunter and Aleia will oversee scouting. Aleia will do pre-competition scouting, and Hunter will do scouting at the competition by observing all matches played at said competition. 
+</details>
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
