@@ -101,10 +101,10 @@ while (1) {
   }
 
   //Moble Goal
-  if (Controller.ButtonDown.pressing()) {
+  if (Controller.ButtonB.pressing()) {
     moGo.set(true);
   }
-  else if (Controller.ButtonB.pressing()) {
+  else if (Controller.ButtonDown.pressing()) {
     moGo.set(false);
   }
 
@@ -119,6 +119,7 @@ while (1) {
     arm.stop();
   }
   wait(30, msec);
+
 }
 }
 
