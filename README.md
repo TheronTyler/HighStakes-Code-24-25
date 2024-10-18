@@ -30,6 +30,7 @@ Decision-Making Framework:
 Our general decision-making process is as follows: First, the problem is identified. Then, the problem is independently researched, and solutions are presented to the entire group during a meeting. During this meeting, they will be evaluated in a decision matrix and verbal discussion. Following this, we will vote as a group on the best solution initially presented and modify it as necessary so that the highest possible number of team members agree it's the best solution.
 
 Main roles:
+
 __*Coders*__ — Our main coder is Theron. Aleia and Hunter learn alongside Theron how to code more complex code in Visual Studio Code (VS Code) when Theron cannot attend meetings. 
 
 __*Builders*__ — Layne, Aleia, and Ethan will help each other build the robot exactly as the CAD has been done unless they cannot copy the CAD due to functional issues. They will tweak the robot designs after they have been completed and fix any minor issues that appear. 
