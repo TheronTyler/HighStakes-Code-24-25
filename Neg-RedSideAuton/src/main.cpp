@@ -9,6 +9,7 @@
 
 #include "vex.h"
 
+#include "devices.h"
 #include "turnHeading.h"
 
 using namespace vex;
