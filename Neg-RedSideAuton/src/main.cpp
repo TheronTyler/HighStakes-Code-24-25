@@ -15,8 +15,8 @@
 using namespace vex;
 
 // A global instance of competition
-
 void pre_auton(void) {
+
 //Speed
 lIntake.setVelocity(95,pct);
 uIntake.setVelocity(95,pct);
