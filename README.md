@@ -5,7 +5,8 @@ VEX Robotics Competition Team 3017D Diffusion's Code for the 2024-25 Game: High 
 <details closed>
 <summary>TEAM GUIDELINES</summary>
 <br>
-Team Norms.
+Team Norms
+  
 When a teammate is expected to be absent, they will notify the rest of the team before their absence to see what they can do while they are gone. The team will delegate tasks the absent members cannot perform to each other. 
 
 When a teammate has an unexpected absence, they text the rest of the team to ask if they can do anything while they are gone.
