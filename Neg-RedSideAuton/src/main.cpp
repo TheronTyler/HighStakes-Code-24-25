@@ -18,12 +18,11 @@ using namespace vex;
 void pre_auton(void) {
 
 //Speed
-lIntake.setVelocity(95,pct);
-uIntake.setVelocity(95,pct);
+intake.setVelocity(95,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
-motor_group(lIntake, uIntake).setStopping(coast);
+intake.setStopping(coast);
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -54,10 +53,10 @@ void mind(char cmd,float delay,float revolutions) {
     motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
     break;
   case 'i': //intake
-    motor_group(lIntake, uIntake).setVelocity(100,pct);
-    motor_group(lIntake, uIntake).spinFor(fwd, revolutions, rev, false);
+    intake.setVelocity(100,pct);
+    intake.spinFor(fwd, revolutions, rev, false);
     wait(delay, sec);
-    motor_group(lIntake, uIntake).stop();
+    intake.stop();
     break;
   }
 }
@@ -86,7 +85,7 @@ moGo.set(true);
 mind('i',1,2.5); //score preload
 
 mind('a',.5,1); //first stack
-motor_group(lIntake,uIntake).spinFor(fwd,40,rev,false);
+intake.spinFor(fwd,40,rev,false);
 mind('s',2.5,1.2);
 
 mind('a',1,2);//second stack
@@ -109,13 +108,13 @@ while (1) {
   
   //Intake
   if (Controller.ButtonL1.pressing()) {
-    motor_group(lIntake, uIntake).spin(fwd, 80, pct);
+    intake.spin(fwd, 80, pct);
   }
   else if (Controller.ButtonL2.pressing()) {
-    motor_group(lIntake, uIntake).spin(reverse, 80, pct);
+    intake.spin(reverse, 80, pct);
   }
   else {
-    motor_group(lIntake, uIntake).stop();
+    intake.stop();
   }
 
   //Moble Goal
@@ -128,13 +127,13 @@ while (1) {
 
   //Arm
   if (Controller.ButtonR1.pressing()) {
-    arm.spin(fwd);
+    bPack.spin(fwd);
   }
   else if (Controller.ButtonR2.pressing()) {
-    arm.spin(reverse);
+    bPack.spin(reverse);
   }
   else {
-    arm.stop();
+    bPack.stop();
   }
   wait(30, msec);
 

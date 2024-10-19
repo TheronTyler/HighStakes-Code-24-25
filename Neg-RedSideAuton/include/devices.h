@@ -6,18 +6,21 @@ competition Competition;
 brain Brain;
 controller Controller;
 
-motor fLDrive = motor(PORT1, true);
-motor bLDrive = motor(PORT2, true);
-motor mLDrive = motor(PORT3, true);
-motor fRDrive = motor(PORT4);
-motor bRDrive = motor(PORT5);
-motor mRDrive = motor(PORT6);
+motor fLDrive = motor(PORT13, true);
+motor bLDrive = motor(PORT11, true);
+motor mLDrive = motor(PORT12, true);
+motor fRDrive = motor(PORT1);
+motor bRDrive = motor(PORT2);
+motor mRDrive = motor(PORT3);
 
-motor lIntake = motor(PORT7, true);
-motor uIntake = motor(PORT8);
+motor intake = motor(PORT14);
 
-motor arm = motor(PORT9);
+motor bPack = motor(PORT4);
 
-inertial sense = inertial(PORT10);
+inertial sense = inertial(PORT5);
+rotation bPackAngle = rotation(PORT9);
+aivision vision = aivision(PORT10);
 
 digital_out moGo = digital_out(Brain.ThreeWirePort.A);
+
+digital_out doinker = digital_out(Brain.ThreeWirePort.H);
