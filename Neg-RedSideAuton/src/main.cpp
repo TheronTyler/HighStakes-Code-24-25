@@ -61,7 +61,24 @@ void mind(char cmd,float delay,float revolutions) {
     break;
   }
 }
+/* ---- Possible New Auton Functions
+void drive(float revolutions, float speed){
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(speed, pct);
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(fwd, revolutions, rev);
+}
 
+void turnLeft(float revolutions, float speed){
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(speed, pct);
+  motor_group(fLDrive, bLDrive, mLDrive ).spinFor(reverse, revolutions, rev, false);
+  motor_group(fRDrive, bRDrive, mLDrive).spinFor(fwd, revolutions, rev, false);
+}
+
+void turnRight(float revolutions, float speed){
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(soeed, pct);
+  motor_group(fLDrive, bLDrive, mLDrive ).spinFor(fwd, revolutions, rev, false);
+  motor_group(fRDrive, bRDrive, mLDrive).spinFor(reverse, revolutions, rev, false);
+}
+*/
 void autonomous(void) {
 mind('w',.75,-1.3); //Rush goal
 moGo.set(true);
