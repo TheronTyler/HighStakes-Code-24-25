@@ -19,7 +19,7 @@ motor bPack = motor(PORT4);
 
 inertial sense = inertial(PORT5);
 rotation bPackAngle = rotation(PORT9);
-aivision vision = aivision(PORT10);
+aivision ai = aivision(PORT10);
 
 digital_out moGo = digital_out(Brain.ThreeWirePort.A);
 

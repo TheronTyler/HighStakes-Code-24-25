@@ -24,6 +24,17 @@ motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(br
 intake.setStopping(coast);
 }
 
+void load(){
+  intake.spin(fwd);
+  ai.takeSnapshot(aivision::ALL_COLORS);
+  if(ai.objectCount){
+    bPack.stop();
+    }
+  else{
+    bPack.spinTo(5, deg);
+  }
+}
+
 void mind(char cmd,float delay,float revolutions) {
   switch (cmd) {
   case 'w': //forward motion
