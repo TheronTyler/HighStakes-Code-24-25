@@ -8,7 +8,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "vex.h"
-
 #include "turnHeading.h"
 
 using namespace vex;
