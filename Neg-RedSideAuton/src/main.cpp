@@ -93,7 +93,7 @@ moGo.set(true);
 
 mind('i',1,2.5); //score preload
 
-mind('a',.5,1); //first stack
+mind('a',.4,.9); //first stack
 intake.spinFor(fwd,40,rev,false);
 mind('w',2.5,1.2);
 

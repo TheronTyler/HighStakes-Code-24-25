@@ -21,6 +21,6 @@ inertial sense = inertial(PORT5);
 rotation bPackAngle = rotation(PORT9);
 aivision ai = aivision(PORT10);
 
-digital_out moGo = digital_out(Brain.ThreeWirePort.B);
+digital_out moGo = digital_out(Brain.ThreeWirePort.A);
 
 digital_out doinker = digital_out(Brain.ThreeWirePort.H);
