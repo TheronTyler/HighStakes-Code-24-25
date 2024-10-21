@@ -7,8 +7,8 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-#include "vex.h"
-#include "turnHeading.h"
+#include "setup.h"
+//#include "turnHeading.h"
 
 using namespace vex;
 
@@ -88,20 +88,20 @@ void turnRight(float revolutions, float speed){
 }
 */
 void autonomous(void) {
-mind('w',.75,-1.3); //Rush goal
+mind('w',.8,-1.5); //Rush goal
 moGo.set(true);
 
 mind('i',1,2.5); //score preload
 
 mind('a',.5,1); //first stack
 intake.spinFor(fwd,40,rev,false);
-mind('s',2.5,1.2);
+mind('w',2.5,1.2);
 
 mind('a',1,2);//second stack
 mind('s',.5,.5);
 
 mind('a',.25,-.3);
-mind('S',.2,.2);
+mind('s',.2,.2);
 
 mind('s',1.5,-3.3);//retreat to ladder
 }
