@@ -109,8 +109,8 @@ mind('s',1.5,-3.3);//retreat to ladder
 void usercontrol(void) {
 while (1) {
   //Drive
-  int lateral = Controller.Axis2.position(pct);
-  int rotational = Controller.Axis1.position(pct);
+  int rotational = Controller.Axis3.position(pct);
+  int lateral = Controller.Axis1.position(pct);
 
   motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
   motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
