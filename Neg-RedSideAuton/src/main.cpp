@@ -88,12 +88,13 @@ void turnRight(float revolutions, float speed){
 }
 */
 void autonomous(void) {
-mind('w',.8,-1.5); //Rush goal
+mind('w',.6,-1.3); //Rush goal
+wait(5, msec);
 moGo.set(true);
 
 mind('i',1,2.5); //score preload
 
-mind('a',.4,.9); //first stack
+mind('a',.7,1.3); //first stack
 intake.spinFor(fwd,40,rev,false);
 mind('w',2.5,1.2);
 
