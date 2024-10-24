@@ -87,6 +87,7 @@ void turnRight(float revolutions, float speed){
   motor_group(fRDrive, bRDrive, mLDrive).spinFor(reverse, revolutions, rev, false);
 }
 */
+
 void autonomous(void) {
 mind('w',.6,-1.3); //Rush goal
 wait(5, msec);
@@ -94,11 +95,11 @@ moGo.set(true);
 
 mind('i',1,2.5); //score preload
 
-mind('a',.7,1.3); //first stack
+mind('a',.75,1.3125); //first stack
 intake.spinFor(fwd,40,rev,false);
-mind('w',2.5,1.2);
+mind('w',2.5,1);
 
-mind('a',1,2);//second stack
+mind('a',1,1.5);//second stack
 mind('s',.5,.5);
 
 mind('a',.25,-.3);
@@ -135,6 +136,14 @@ while (1) {
     moGo.set(false);
   }
 
+  //Doinker
+  if (Controller.ButtonLeft.pressing()) {
+    doinker.set(true);
+  }
+  else if (Controller.ButtonUp.pressing()) {
+    doinker.set(false);
+  }
+
   //Arm
   if (Controller.ButtonR1.pressing()) {
     bPack.spin(fwd);
@@ -148,8 +157,8 @@ while (1) {
   wait(30, msec);
 
 }
-}
 
+}
 int main() {
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
