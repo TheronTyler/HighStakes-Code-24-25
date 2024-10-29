@@ -57,7 +57,7 @@ void mind(char cmd,float delay,float revolutions) {
   case 'a': //clockwise turn
     motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(70, pct);
     motor_group(fLDrive, bLDrive, mLDrive ).spinFor(fwd, revolutions, rev, false);
-    motor_group(fRDrive, bRDrive, mLDrive).spinFor(reverse, revolutions, rev, false);
+    motor_group(fRDrive, bRDrive, mRDrive).spinFor(reverse, revolutions, rev, false);
     wait(delay, sec);
     motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
     break;
@@ -89,21 +89,22 @@ void turnRight(float revolutions, float speed){
 */
 
 void autonomous(void) {
-mind('w',.6,-1.3); //Rush goal
-wait(5, msec);
+mind('w',.75,-1.55); //Rush goal
+wait(25, msec);
 moGo.set(true);
 
 mind('i',1,2.5); //score preload
 
-mind('a',.75,1.3125); //first stack
+mind('a',.7,.2); //first stack
 intake.spinFor(fwd,40,rev,false);
-mind('w',2.5,1);
+mind('w',.5,.85);
+mind('s',.25,.4);
 
-mind('a',1,1.75);//second stack
-mind('s',.2,.25);
+mind('a',1,.2);//second stack
+mind('s',.2,.75);
 
 mind('a',.25,-.3);
-mind('s',.2,.125);
+mind('s',.2,.25);
 
 mind('s',1.5,-3.3);//retreat to ladder
 }
