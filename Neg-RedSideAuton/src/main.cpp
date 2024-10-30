@@ -100,8 +100,10 @@ intake.spinFor(fwd,40,rev,false);
 mind('w',.5,.85);
 mind('s',.25,.4);
 
-mind('a',1,.2);//second stack
-mind('s',.2,.75);
+wait(1, sec);
+mind('S',.25,1);
+mind('a',1.5,.5);//second stack
+mind('s',.4,.9);
 
 mind('a',.25,-.3);
 mind('s',.2,.25);
