@@ -23,17 +23,6 @@ motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(br
 intake.setStopping(coast);
 }
 
-void load(){
-  intake.spin(fwd);
-  ai.takeSnapshot(aivision::ALL_COLORS);
-  if(ai.objectCount){
-    bPack.stop();
-    }
-  else{
-    bPack.spinTo(5, deg);
-  }
-}
-
 void mind(char cmd,float delay,float revolutions) {
   switch (cmd) {
   case 'w': //forward motion
@@ -89,31 +78,39 @@ void turnRight(float revolutions, float speed){
 */
 
 void autonomous(void) {
-mind('w',.4,-.5); //goal
-moGo.set(true);
-intake.spinFor(fwd, 60, rev, false); //first ring
-wait(.5, sec);
-mind('a',1,0.87); 
-mind('w',1,.7); //second ring
-wait(.5, sec);
-mind('a',1,-0.38);
-mind('w',1,.8); //third ring
-wait(.3, sec);
-mind('a',1,-0.4);
-mind('S',3,0.65); //fourth ring
-wait(.3, sec);
-mind('S',3,0.65); //fifth ring
-mind('w',1,-0.4); 
-mind('a',1,0.5);
-mind('w',1,0.4); //sixth ring
-wait(.3, sec);
-mind('w',1,-0.4);
-mind('a',1,0.5);
-mind('w',1,-0.7);
-moGo.set(false); //goal in corner
-mind('w',1,0.4);
-mind('a',1,0.9);
-mind('w',1,-3);
+
+  mind('w',.4,-.5); //goal
+  moGo.set(true);
+
+  intake.spinFor(fwd, 60, rev, false); //first ring
+  wait(.5, sec);
+  mind('a',1,0.87); 
+
+  mind('w',1,.7); //second ring
+  wait(.5, sec);
+  mind('a',1,-0.38);
+
+  mind('w',1,.8); //third ring
+  wait(.3, sec);
+  mind('a',1,-0.4);
+
+  mind('S',3,0.65); //fourth ring
+  wait(.3, sec);
+
+  mind('S',3,0.65); //fifth ring
+  mind('w',1,-0.4); 
+  mind('a',1,0.5);
+
+  mind('w',1,0.4); //sixth ring
+  wait(.3, sec);
+  mind('w',1,-0.4);
+  mind('a',1,0.5);
+  mind('w',1,-0.7);
+
+  moGo.set(false); //goal in corner
+  mind('w',1,0.4);
+  mind('a',1,0.9);
+  mind('w',1,-3);
 
 
 }
