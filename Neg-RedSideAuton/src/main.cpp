@@ -17,21 +17,11 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
+arm.setVelocity(60,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-}
-
-void load(){
-  intake.spin(fwd);
-  ai.takeSnapshot(aivision::ALL_COLORS);
-  if(ai.objectCount){
-    bPack.stop();
-    }
-  else{
-    bPack.spinTo(5, deg);
-  }
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -149,13 +139,13 @@ while (1) {
 
   //Arm
   if (Controller.ButtonR1.pressing()) {
-    bPack.spin(fwd);
+    arm.spin(fwd);
   }
   else if (Controller.ButtonR2.pressing()) {
-    bPack.spin(reverse);
+    arm.spin(reverse);
   }
   else {
-    bPack.stop();
+    arm.stop();
   }
   wait(30, msec);
 

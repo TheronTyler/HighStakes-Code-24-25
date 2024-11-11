@@ -15,10 +15,10 @@ motor mRDrive = motor(PORT3);
 
 motor intake = motor(PORT14);
 
-motor bPack = motor(PORT4);
+motor arm = motor(PORT9);
 
 inertial sense = inertial(PORT5);
-rotation bPackAngle = rotation(PORT9);
+rotation armAngle = rotation(PORT20);
 aivision ai = aivision(PORT10);
 
 digital_out moGo = digital_out(Brain.ThreeWirePort.A);

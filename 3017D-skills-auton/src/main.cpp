@@ -152,13 +152,13 @@ while (1) {
 
   //Arm
   if (Controller.ButtonR1.pressing()) {
-    bPack.spin(fwd);
+    arm.spin(fwd);
   }
   else if (Controller.ButtonR2.pressing()) {
-    bPack.spin(reverse);
+    arm.spin(reverse);
   }
   else {
-    bPack.stop();
+    arm.stop();
   }
   wait(30, msec);
 
