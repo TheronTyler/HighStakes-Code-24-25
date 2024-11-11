@@ -17,10 +17,12 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
+arm.setVelocity(60,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
+arm.setStopping(hold);
 }
 
 void mind(char cmd,float delay,float revolutions) {
