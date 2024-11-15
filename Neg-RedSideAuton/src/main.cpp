@@ -17,12 +17,11 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
-arm.setVelocity(60,pct);
+arm.setVelocity(90,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-arm.setStopping(hold);
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -60,26 +59,9 @@ void mind(char cmd,float delay,float revolutions) {
     break;
   }
 }
-/* ---- Possible New Auton Functions
-void drive(float revolutions, float speed){
-  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(speed, pct);
-  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(fwd, revolutions, rev);
-}
-
-void turnLeft(float revolutions, float speed){
-  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(speed, pct);
-  motor_group(fLDrive, bLDrive, mLDrive ).spinFor(reverse, revolutions, rev, false);
-  motor_group(fRDrive, bRDrive, mLDrive).spinFor(fwd, revolutions, rev, false);
-}
-
-void turnRight(float revolutions, float speed){
-  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(soeed, pct);
-  motor_group(fLDrive, bLDrive, mLDrive ).spinFor(fwd, revolutions, rev, false);
-  motor_group(fRDrive, bRDrive, mLDrive).spinFor(reverse, revolutions, rev, false);
-}
-*/
 
 void autonomous(void) {
+arm.setStopping(coast);
 mind('w',.75,-1.55); //Rush goal
 wait(25, msec);
 moGo.set(true);
@@ -104,6 +86,7 @@ mind('s',1.5,-3.3);//retreat to ladder
 
 void usercontrol(void) {
 while (1) {
+  arm.setStopping(hold);
   //Drive
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);
@@ -138,6 +121,14 @@ while (1) {
     doinker.set(false);
   }
 
+  //Wall Stake Expansion
+  if (Controller.ButtonX.pressing()){
+    wallStake.set(true);
+  }
+  else if (Controller.ButtonA.pressing()){
+    wallStake.set(false);
+  }
+  
   //Arm
   if (Controller.ButtonR1.pressing()) {
     arm.spin(fwd);

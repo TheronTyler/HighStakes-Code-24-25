@@ -17,12 +17,12 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
-arm.setVelocity(60,pct);
+arm.setVelocity(90,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-arm.setStopping(hold);
+arm.setStopping(coast);
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -90,7 +90,7 @@ void autonomous(void) {
 
   mind('w',1,.7); //second ring
   wait(.5, sec);
-  mind('a',1,-0.38);
+  mind('a',1,-0.34);
 
   mind('w',1,.8); //third ring
   wait(.3, sec);
@@ -101,7 +101,7 @@ void autonomous(void) {
 
   mind('S',3,0.65); //fifth ring
   mind('w',1,-0.4); 
-  mind('a',1,0.5);
+  mind('a',1,0.42);
 
   mind('w',1,0.4); //sixth ring
   wait(.3, sec);
@@ -152,6 +152,14 @@ while (1) {
     doinker.set(false);
   }
 
+  //Wall Stake Expansion
+  if (Controller.ButtonX.pressing()){
+    wallStake.set(true);
+  }
+  else if (Controller.ButtonA.pressing()){
+    wallStake.set(false)
+  }
+  
   //Arm
   if (Controller.ButtonR1.pressing()) {
     arm.spin(fwd);

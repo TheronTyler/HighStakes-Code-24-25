@@ -138,6 +138,14 @@ while (1) {
     doinker.set(false);
   }
 
+  //Wall Stake Expansion
+  if (Controller.ButtonX.pressing()){
+    wallStake.set(true);
+  }
+  else if (Controller.ButtonA.pressing()){
+    wallStake.set(false);
+  }
+
   //Arm
   if (Controller.ButtonR1.pressing()) {
     arm.spin(fwd);

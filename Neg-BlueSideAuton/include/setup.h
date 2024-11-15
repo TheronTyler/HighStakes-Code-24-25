@@ -24,3 +24,5 @@ aivision ai = aivision(PORT10);
 digital_out moGo = digital_out(Brain.ThreeWirePort.A);
 
 digital_out doinker = digital_out(Brain.ThreeWirePort.H);
+
+digital_out wallStake = digital_out(Brain.ThreeWirePort.G);
