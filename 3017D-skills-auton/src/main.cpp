@@ -157,7 +157,7 @@ while (1) {
     wallStake.set(true);
   }
   else if (Controller.ButtonA.pressing()){
-    wallStake.set(false)
+    wallStake.set(false);
   }
   
   //Arm
