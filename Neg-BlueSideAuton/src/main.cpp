@@ -99,7 +99,7 @@ mind('s',.4,.9);
 mind('a',.25,.3);
 mind('s',.2,.25);
 
-mind('s',1.5,-3.3);//retreat to ladder
+mind('s',1.5,-2);//retreat to ladder
 }
 
 void usercontrol(void) {
