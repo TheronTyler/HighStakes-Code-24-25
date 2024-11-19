@@ -10,7 +10,7 @@
 #include "vex.h"
 #include "robot-config.h"
 #include "autons.h"
-//#include "turnHeading.h"
+#include "PID.h"
 
 using namespace vex;
 
@@ -45,7 +45,7 @@ void pre_auton(void) {
     if(Brain.Screen.pressing()){
       while(Brain.Screen.pressing()) {}
       current_auton_selection ++;
-    } else if (current_auton_selection == 8){
+    } else if (current_auton_selection == 5){
       current_auton_selection = 0;
     }
     task::sleep(10);

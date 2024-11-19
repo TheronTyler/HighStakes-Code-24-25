@@ -80,7 +80,6 @@ void turnRight(float revolutions, float speed){
 */
 
 void autonomous(void) {
-
   mind('w',.4,-.5); //goal
   moGo.set(true);
 
