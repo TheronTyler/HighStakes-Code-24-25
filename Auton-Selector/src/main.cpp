@@ -1,92 +1,152 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
-/*    Author:       rhond                                                     */
-/*    Created:      11/18/2024, 3:59:22 PM                                    */
+/*    Author:       Theron Tyler                                              */
+/*    Created:      9/20/2024, 8:15:00 AM                                     */
 /*    Description:  V5 project                                                */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
 #include "vex.h"
+#include "robot-config.h"
+#include "autons.h"
+//#include "turnHeading.h"
 
 using namespace vex;
 
+int current_auton_selection = 0;
+bool auto_started = false;
 // A global instance of competition
-competition Competition;
-
-// define your global instances of motors and other devices here
-
-/*---------------------------------------------------------------------------*/
-/*                          Pre-Autonomous Functions                         */
-/*                                                                           */
-/*  You may want to perform some actions before the competition starts.      */
-/*  Do them in the following function.  You must return from this function   */
-/*  or the autonomous and usercontrol tasks will not be started.  This       */
-/*  function is only called once after the V5 has been powered on and        */
-/*  not every time that the robot is disabled.                               */
-/*---------------------------------------------------------------------------*/
-
 void pre_auton(void) {
 
-  // All activities that occur before the competition starts
-  // Example: clearing encoders, setting servo positions, ...
-}
+  while(!auto_started){
+    Brain.Screen.clearScreen();
+    Brain.Screen.printAt(5, 20, "Team 3017D: Diffusion");
+    Brain.Screen.printAt(5, 40, "Battery Percentage:");
+    Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
+    Brain.Screen.printAt(5, 120, "Selected Auton:");
+    switch(current_auton_selection){
+      case 0:
+        Brain.Screen.printAt(5, 140, "Neg-Red");
+        break;
+      case 1:
+        Brain.Screen.printAt(5, 140, "Pos-Red");
+        break;
+      case 2:
+        Brain.Screen.printAt(5, 140, "Neg-Blue");
+        break;
+      case 3:
+        Brain.Screen.printAt(5, 140, "Pos-Blue");
+        break;
+      case 4:
+        Brain.Screen.printAt(5, 140, "Skills");
+        break;
+    }
+    if(Brain.Screen.pressing()){
+      while(Brain.Screen.pressing()) {}
+      current_auton_selection ++;
+    } else if (current_auton_selection == 8){
+      current_auton_selection = 0;
+    }
+    task::sleep(10);
+  }
+//Speed
+intake.setVelocity(95,pct);
+arm.setVelocity(90,pct);
 
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              Autonomous Task                              */
-/*                                                                           */
-/*  This task is used to control your robot during the autonomous phase of   */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
+//Stopping
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
+intake.setStopping(coast);
+}
 
 void autonomous(void) {
-  // ..........................................................................
-  // Insert autonomous user code here.
-  // ..........................................................................
+auto_started = true;
+  switch(current_auton_selection){ 
+    case 0:
+      Neg_Red();
+      break;
+    case 1:         
+      Pos_Red();
+      break;
+    case 2:
+      Neg_Blue();
+      break;
+    case 3:
+      Pos_Blue();
+      break;
+    case 4:
+      Skills();
+      break;
+ }
 }
-
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              User Control Task                            */
-/*                                                                           */
-/*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
 
 void usercontrol(void) {
-  // User control code here, inside the loop
-  while (1) {
-    // This is the main execution loop for the user control program.
-    // Each time through the loop your program should update motor + servo
-    // values based on feedback from the joysticks.
+while (1) {
+  arm.setStopping(hold);
+  //Drive
+  int rotational = Controller.Axis3.position(pct);
+  int lateral = Controller.Axis1.position(pct);
 
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to
-    // update your motors, etc.
-    // ........................................................................
-
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
+  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
+  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
+  
+  //Intake
+  if (Controller.ButtonL1.pressing()) {
+    intake.spin(fwd, 80, pct);
   }
+  else if (Controller.ButtonL2.pressing()) {
+    intake.spin(reverse, 80, pct);
+  }
+  else {
+    intake.stop();
+  }
+
+  //Moble Goal
+  if (Controller.ButtonB.pressing()) {
+    moGo.set(true);
+  }
+  else if (Controller.ButtonDown.pressing()) {
+    moGo.set(false);
+  }
+
+  //Doinker
+  if (Controller.ButtonLeft.pressing()) {
+    doinker.set(true);
+  }
+  else if (Controller.ButtonUp.pressing()) {
+    doinker.set(false);
+  }
+
+  //Wall Stake Expansion
+  if (Controller.ButtonX.pressing()){
+    wallStake.set(true);
+  }
+  else if (Controller.ButtonA.pressing()){
+    wallStake.set(false);
+  }
+  
+  //Arm
+  if (Controller.ButtonR1.pressing()) {
+    arm.spin(fwd);
+  }
+  else if (Controller.ButtonR2.pressing()) {
+    arm.spin(reverse);
+  }
+  else {
+    arm.stop();
+  }
+  wait(30, msec);
+
 }
 
-//
-// Main will set up the competition functions and callbacks.
-//
+}
+
 int main() {
-  // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
 
-  // Run the pre-autonomous function.
   pre_auton();
 
-  // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);
   }
