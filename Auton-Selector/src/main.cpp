@@ -24,6 +24,8 @@ void pre_auton(void) {
     Brain.Screen.printAt(5, 20, "Team 3017D: Diffusion");
     Brain.Screen.printAt(5, 40, "Battery Percentage:");
     Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
+    Brain.Screen.printAt(5, 80, "Average Drive Temperature:");
+    Brain.Screen.printAt(5, 100, "%d", motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).temperature());
     Brain.Screen.printAt(5, 120, "Selected Auton:");
     switch(current_auton_selection){
       case 0:
