@@ -29,19 +29,19 @@ void pre_auton(void) {
     Brain.Screen.printAt(5, 120, "Selected Auton:");
     switch(current_auton_selection){
       case 0:
-        Brain.Screen.printAt(5, 140, "Neg-Red");
+        Brain.Screen.printAt(300, 140, "Neg-Red");
         break;
       case 1:
-        Brain.Screen.printAt(5, 140, "Pos-Red");
+        Brain.Screen.printAt(300, 140, "Pos-Red");
         break;
       case 2:
-        Brain.Screen.printAt(5, 140, "Neg-Blue");
+        Brain.Screen.printAt(300, 140, "Neg-Blue");
         break;
       case 3:
-        Brain.Screen.printAt(5, 140, "Pos-Blue");
+        Brain.Screen.printAt(300, 140, "Pos-Blue");
         break;
       case 4:
-        Brain.Screen.printAt(5, 140, "Skills");
+        Brain.Screen.printAt(300, 140, "Skills");
         break;
     }
     if(Brain.Screen.pressing()){
