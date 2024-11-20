@@ -1,6 +1,22 @@
 #include "robot-config.h"
 #include "vex.h"
 
+void turn(float turnTarget){
+  float turnTarget;
+  float turnKp = 3; //needs tuned
+  float turnKi = 0.1; //needs tuned
+  float turnKd = 3; //needs tuned
+  float turnError = turnTarget - sense.heading();
+  float P = turnKp * turnError;
+  float I = I + (LOOPTIME * turnError * turnKi);
+  float D = turnKd * (turnError - turnErrorPrevious)/LOOPTIME;
+
+  while(fabs(turnError)>1){
+    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd, 35 + (P + I + D), pct);
+    motor_group(fRDrive, bRDrive, mRDrive).spin(fwd, 35 - (P + I + D), pct);
+  }
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
+}
 /*
 void TurnHeading(double targetHeading) {
   double currentError = targetHeading - sense.heading();
@@ -21,32 +37,3 @@ void TurnHeading(double targetHeading) {
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
 }
 */
-
-double setpoint; // desired output  
-double processVariable; // current output  
-double error; // difference between setpoint and processVariable  
-double previousError; // error in previous iteration  
-double integral; // integral of error  
-double derivative; // derivative of error  
-double kp; // proportional gain  
-double ki; // integral gain  
-double kd; // derivative gain  
-double output; // output of the controller  
-
-double calculateOutput(double setpoint, double processVariable) {  
-    error = setpoint - processVariable;  
-    integral += error;  
-    derivative = error - previousError;  
-    output = kp * error + ki * integral + kd * derivative;  
-    previousError = error;  
-    return output;  
-}  
-
-void TurnHeading(double targetHeading) {
-while(fabs(error)>4) {
-    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,-output,pct);
-    motor_group(fRDrive, bRDrive, mRDrive).spin(fwd,output,pct);
-    error = targetHeading - sense.heading();
-  }
-  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-}

@@ -29,7 +29,7 @@ void pre_auton(void) {
     Brain.Screen.printAt(5, 120, "Selected Auton:");
     switch(current_auton_selection){
       case 0:
-        Brain.Screen.printAt(300, 140, "Neg-Red");
+        Brain.Screen.drawImageFromFile("Neg-Red.png", 300, 140);
         break;
       case 1:
         Brain.Screen.printAt(300, 140, "Pos-Red");
