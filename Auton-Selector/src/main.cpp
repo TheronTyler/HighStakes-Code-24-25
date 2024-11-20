@@ -13,6 +13,7 @@
 #include "PID.h"
 
 using namespace vex;
+using namespace std;
 
 int current_auton_selection = 0;
 bool auto_started = false;
@@ -20,6 +21,7 @@ bool auto_started = false;
 void pre_auton(void) {
 
   while(!auto_started){
+
     Brain.Screen.clearScreen();
     Brain.Screen.printAt(5, 20, "Team 3017D: Diffusion");
     Brain.Screen.printAt(5, 40, "Battery Percentage:");
