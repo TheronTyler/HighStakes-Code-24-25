@@ -1,5 +1,6 @@
 #include "vex.h"
 #include "robot-config.h"
+#include "PID.h"
 
 void mind(char cmd,float delay,float revolutions) {
   switch (cmd) {
