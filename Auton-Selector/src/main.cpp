@@ -17,6 +17,7 @@ using namespace std;
 
 int current_auton_selection = 0;
 bool auto_started = false;
+
 // A global instance of competition
 void pre_auton(void) {
 
@@ -29,19 +30,31 @@ void pre_auton(void) {
     Brain.Screen.printAt(5, 120, "Selected Auton:");
     switch(current_auton_selection){
       case 0:
-        Brain.Screen.drawImageFromFile("Neg-Red.png", 300, 140);
+        Brain.Screen.drawImageFromFile("RED_NEG_SAWP.png", 300, 140);
         break;
       case 1:
-        Brain.Screen.printAt(300, 140, "Pos-Red");
+        Brain.Screen.drawImageFromFile("RED_POS_SAFE.png", 300, 140);
         break;
       case 2:
-        Brain.Screen.printAt(300, 140, "Neg-Blue");
+        Brain.Screen.drawImageFromFile("RED_POS_RUSH.png", 300, 140);
         break;
       case 3:
-        Brain.Screen.printAt(300, 140, "Pos-Blue");
+        Brain.Screen.drawImageFromFile("RED_NEG_ELIMS.png", 300, 140);
         break;
       case 4:
-        Brain.Screen.printAt(300, 140, "Skills");
+        Brain.Screen.drawImageFromFile("BLUE_NEG_SAWP.png", 300, 140);
+        break;
+      case 5:
+        Brain.Screen.drawImageFromFile("BLUE_POS_SAFE.png", 300, 140);
+        break;
+      case 6:
+        Brain.Screen.drawImageFromFile("BLUE_POS_RUSH.png", 300, 140);
+        break;
+      case 7:
+        Brain.Screen.drawImageFromFile("BLUE_NEG_ELIMS.png", 300, 140);
+        break;
+      case 8:
+        Brain.Screen.drawImageFromFile("Skills.png", 300, 140);
         break;
     }
     if(Brain.Screen.pressing()){
@@ -65,18 +78,30 @@ void autonomous(void) {
 auto_started = true;
   switch(current_auton_selection){ 
     case 0:
-      Neg_Red();
+      RED_NEG_SAWP();
       break;
     case 1:         
-      Pos_Red();
+      RED_POS_SAFE();
       break;
     case 2:
-      Neg_Blue();
+      RED_POS_RUSH();
       break;
     case 3:
-      Pos_Blue();
+      RED_NEG_ELIMS();
       break;
     case 4:
+      BLUE_NEG_SAWP();
+      break;
+    case 5:
+      BLUE_POS_SAFE();
+      break;
+    case 6:
+      BLUE_POS_RUSH();
+      break;
+    case 7:
+      BLUE_NEG_ELIMS();
+      break;
+    case 8:
       Skills();
       break;
  }

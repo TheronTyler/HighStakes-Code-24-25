@@ -38,7 +38,7 @@ void mind(char cmd,float delay,float revolutions) {
   }
 }
 
-void Neg_Red(){
+void RED_NEG_SAWP(){
     arm.setStopping(coast);
     mind('w',.75,-1.55); //Rush goal
     wait(25, msec);
@@ -62,11 +62,19 @@ void Neg_Red(){
     mind('s',1.5,-2);//retreat to ladder
 }
 
-void Pos_Red(){
+void RED_POS_SAFE(){
 
 }
 
-void Neg_Blue(){
+void RED_POS_RUSH(){
+
+}
+
+void RED_NEG_ELIMS(){
+
+}
+
+void BLUE_NEG_SAWP(){
     arm.setStopping(coast);
     mind('w',.75,-1.55); //Rush goal
     wait(25, msec);
@@ -90,7 +98,15 @@ void Neg_Blue(){
     mind('s',1.5,-2);//retreat to ladder
 }
 
-void Pos_Blue(){
+void BLUE_POS_SAFE(){
+
+}
+
+void BLUE_POS_RUSH(){
+
+}
+
+void BLUE_NEG_ELIMS(){
 
 }
 
@@ -127,5 +143,4 @@ void Skills(){
   mind('w',1,0.4);
   mind('a',1,0.9);
   mind('w',1,-3);
-
 }

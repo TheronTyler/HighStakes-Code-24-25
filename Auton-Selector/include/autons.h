@@ -2,8 +2,12 @@
 
 void mind(char cmd,float delay,float revolutions);
 
-void Neg_Red();
-void Pos_Red();
-void Neg_Blue();
-void Pos_Blue();
+void RED_NEG_SAWP();
+void RED_POS_SAFE();
+void RED_POS_RUSH();
+void RED_NEG_ELIMS();
+void BLUE_NEG_SAWP();
+void BLUE_POS_SAFE();
+void BLUE_POS_RUSH();
+void BLUE_NEG_ELIMS();
 void Skills(); 
