@@ -39,6 +39,10 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void RED_NEG_SAWP(){
+    drive(5);
+
+
+    /*
     arm.setStopping(coast);
     mind('w',.75,-1.55); //Rush goal
     wait(25, msec);
@@ -60,6 +64,7 @@ void RED_NEG_SAWP(){
     mind('s',.2,.25);
 
     mind('s',1.5,-2);//retreat to ladder
+    */
 }
 
 void RED_POS_SAFE(){

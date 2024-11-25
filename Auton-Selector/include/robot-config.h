@@ -18,8 +18,8 @@ static motor intake = motor(PORT14);
 
 static motor arm = motor(PORT9);
 
-static inertial sense = inertial(PORT5);
-static rotation armAngle = rotation(PORT20);
+static inertial sense = inertial(PORT20);
+static rotation armAngle = rotation(PORT5);
 static aivision ai = aivision(PORT10);
 
 static digital_out moGo = digital_out(Brain.ThreeWirePort.A);
