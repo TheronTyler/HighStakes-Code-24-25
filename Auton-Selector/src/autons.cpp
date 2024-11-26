@@ -39,7 +39,7 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void RED_NEG_SAWP(){
-    drive(5);
+    drive(-200);
 
 
     /*

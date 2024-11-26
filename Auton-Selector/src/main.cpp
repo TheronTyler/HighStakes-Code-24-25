@@ -56,6 +56,7 @@ void pre_auton(void) {
       case 8:
         Brain.Screen.drawImageFromFile("Skills.png", 300, 140);
         break;
+        wait(500,msec);
     }
     if(Brain.Screen.pressing()){
       while(Brain.Screen.pressing()) {}
