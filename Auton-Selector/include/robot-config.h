@@ -7,12 +7,12 @@ static competition Competition;
 static brain Brain;
 static controller Controller;
 
-static motor fLDrive = motor(PORT13, true);
-static motor bLDrive = motor(PORT11, true);
-static motor mLDrive = motor(PORT12, true);
-static motor fRDrive = motor(PORT1);
-static motor bRDrive = motor(PORT2);
-static motor mRDrive = motor(PORT3);
+static motor fLDrive = motor(PORT13, ratio36_1, true);
+static motor bLDrive = motor(PORT11, ratio36_1, true);
+static motor mLDrive = motor(PORT12, ratio36_1, true);
+static motor fRDrive = motor(PORT1, ratio36_1);
+static motor bRDrive = motor(PORT2, ratio36_1);
+static motor mRDrive = motor(PORT3, ratio36_1);
 
 static motor intake = motor(PORT14);
 

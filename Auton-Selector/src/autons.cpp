@@ -39,9 +39,7 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void RED_NEG_SAWP(){
-    drive(-200);
-
-
+drive(-360);
     /*
     arm.setStopping(coast);
     mind('w',.75,-1.55); //Rush goal

@@ -23,13 +23,13 @@ void turn(float turnTarget){
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, 0, pct);
 }
 
-void drive(float driveTarget){ //480 deg = ---"
-  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setPosition(0, deg);
+void drive(float driveTarget){ //360 deg = 7.66"
+  fLDrive.setPosition(0, degrees);
 
-  float driveKp = 40; //needs tuned
-  float driveKi = 10; //needs tuned
-  float driveKd = 9; //needs tuned
-  float driveError = driveTarget - (fLDrive.position(deg)); //our drive targey minus the avg position of the motors
+  float driveKp = .5; //needs tuned
+  float driveKi = 1; //needs tuned
+  float driveKd = 3; //needs tuned
+  float driveError = driveTarget - (fLDrive.position(degrees)); 
   
   while (fabs(driveError) > 3){
   driveError = driveTarget - (fLDrive.position(deg));
