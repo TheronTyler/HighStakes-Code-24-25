@@ -39,7 +39,36 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void RED_NEG_SAWP(){
-drive(-360);
+  drive(-121.21); //Grab Goal
+  moGo.set(true);
+
+  intake.spinFor(fwd, 60, rev, false); //Score Preload
+
+  turn(270); //Fill Goal
+  drive(323.23);
+  drive(-121.21);
+  turn(90);
+  drive(121.21);
+  wait(30,msec);
+  drive(-121.21);
+  turn(0);
+  drive(242.42);
+  /*
+  intake.setVelocity(100, pct);
+  drive(-350); //Rush goal
+  wait(20, msec);
+  moGo.set(true);
+
+  intake.spinFor(fwd,60,rev,false); //Score preload
+  wait(700, msec);
+
+  turn(100); //First stack
+  drive(8.58);
+  drive(4.04);
+
+  wait(1000, msec);
+  drive(10.10);
+  */
     /*
     arm.setStopping(coast);
     mind('w',.75,-1.55); //Rush goal
@@ -114,6 +143,22 @@ void BLUE_NEG_ELIMS(){
 }
 
 void Skills(){
+  drive(-121.21); //Grab Goal
+  moGo.set(true);
+
+  intake.spinFor(fwd, 60, rev, false); //Score Preload
+
+  turn(270); //Fill Goal
+  drive(323.23);
+  drive(-121.21);
+  turn(90);
+  drive(121.21);
+  wait(30,msec);
+  drive(-121.21);
+  turn(0);
+  drive(242.42);
+
+  /*
   mind('w',.4,-.5); //goal
   moGo.set(true);
 
@@ -146,4 +191,5 @@ void Skills(){
   mind('w',1,0.4);
   mind('a',1,0.9);
   mind('w',1,-3);
+  */
 }

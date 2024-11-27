@@ -111,6 +111,7 @@ auto_started = true;
 void usercontrol(void) {
 while (1) {
   arm.setStopping(hold);
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
   //Drive
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);

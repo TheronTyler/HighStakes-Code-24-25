@@ -7,7 +7,8 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-#include "setup.h"
+#include "robot-config.h"
+#include "PID.h"
 //#include "turnHeading.h"
 
 using namespace vex;
@@ -61,27 +62,37 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
-arm.setStopping(coast);
-mind('w',.75,-1.55); //Rush goal
-wait(25, msec);
-moGo.set(true);
+  drive(-135); //Grab Goal
+  moGo.set(true);
 
-mind('i',1,2.5); //score preload
+  intake.spinFor(fwd, 60, rev, false); //Score Preload
+  wait(500, msec);
 
-mind('a',.7,.2); //first stack
-intake.spinFor(fwd,40,rev,false);
-mind('w',.5,.85);
-mind('s',.25,.4);
+  turn(270); //Fill Goal
+  wait(250,msec);
 
-wait(1, sec);
-mind('S',.25,1);
-mind('a',1.5,.5);//second stack
-mind('s',.4,.9);
+  drive(200);
+  wait(350,msec);
+  drive(230);
+  wait(100,msec);
 
-mind('a',.25,-.3);
-mind('s',.2,.25);
+  drive(-121.21);
+  wait(250,msec);
 
-mind('s',1.5,-2);//retreat to ladder
+  turn(90);
+  wait(250,msec);
+
+  drive(121.21);
+  wait(250,msec);
+
+  drive(-121.21);
+  wait(250,msec);
+
+  turn(360);
+  wait(250,msec);
+
+  drive(242.42);
+  wait(250,msec);
 }
 
 void usercontrol(void) {
