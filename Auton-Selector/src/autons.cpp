@@ -2,6 +2,8 @@
 #include "robot-config.h"
 #include "PID.h"
 
+
+
 void mind(char cmd,float delay,float revolutions) {
   switch (cmd) {
   case 'w': //forward motion
@@ -39,7 +41,45 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void RED_NEG_SAWP(){
-  turn(90);
+  arm.setVelocity(90, pct);
+  wallStake.set(true); //Open redirect
+
+  //intake.spinFor(rev, 2, sec); //Score Allience Wall stake
+  arm.spinFor(reverse, -1, rev, true);
+  wait(250, msec);
+  drive(96.34);
+  wait(250, msec);
+  arm.spinFor(fwd, 1, rev, true); 
+  
+  drive(-286.48);//Grab goal
+  wait(250, msec);
+  moGo.set(true);
+
+  turn(315);//Turn to first stack TURNING TO RIGHT  CHANGE NUMBER TO HOW IT NEEDS TO BE
+  wait(250, msec);
+  intake.spinFor(fwd, 60, rev, false);//Intake and grab 1st ring
+  drive(192.68);
+  wait(250, msec);
+  
+  turn(240); //grab 2nd ring
+  wait(250, msec);
+  drive(126.76);
+  wait(250, msec);
+
+  drive(-20.28);//grab 3rd ring
+  wait(250, msec);
+  turn(165);
+  wait(250, msec);
+  drive(50.70);
+  wait(250, msec);
+
+  drive(-354.93);//back; turn and touch
+  wait(250, msec);
+  turn(270);
+  wait(250, msec);
+  drive(65.92);
+  wait(250, msec);
+
   /*
   intake.setVelocity(100, pct);
   drive(-350); //Rush goal

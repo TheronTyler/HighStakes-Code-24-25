@@ -15,12 +15,13 @@
 using namespace vex;
 using namespace std;
 
+
 int current_auton_selection = 0;
 bool auto_started = false;
 
 // A global instance of competition
 void pre_auton(void) {
-
+  
   while(!auto_started){
 
     Brain.Screen.clearScreen();
@@ -66,13 +67,7 @@ void pre_auton(void) {
     }
     task::sleep(10);
   }
-//Speed
-intake.setVelocity(95,pct);
-arm.setVelocity(90,pct);
 
-//Stopping
-motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
-intake.setStopping(coast);
 }
 
 void autonomous(void) {
