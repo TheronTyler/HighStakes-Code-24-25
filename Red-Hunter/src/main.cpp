@@ -163,10 +163,8 @@ void usercontrol(void) {
 while (1) {
   arm.setStopping(hold);
   //Drive
-  int rotational = Controller.Axis4.position(pct);
-  int lateral = Controller.Axis3.position(pct);
-  
-
+  int rotational = Controller.Axis3.position(pct);
+  int lateral = Controller.Axis4.position(pct);
 
   motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
   motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
