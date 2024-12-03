@@ -1,0 +1,19 @@
+{
+	"extension": {
+		"version": "0.6.1",
+		"json": 2
+	},
+	"project": {
+		"name": "Red-Hunter",
+		"description": "",
+		"creationDate": "12/2/2024, 3:36:26 PM",
+		"platform": "V5",
+		"language": "cpp",
+		"slot": 8,
+		"sdkVersion": "V5_20240802_15_00_00",
+		"cpp": {
+			"includePath": [],
+			"printf_float": true
+		}
+	}
+}

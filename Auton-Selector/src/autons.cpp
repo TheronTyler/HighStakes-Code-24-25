@@ -39,20 +39,7 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void RED_NEG_SAWP(){
-  drive(-121.21); //Grab Goal
-  moGo.set(true);
-
-  intake.spinFor(fwd, 60, rev, false); //Score Preload
-
-  turn(270); //Fill Goal
-  drive(323.23);
-  drive(-121.21);
   turn(90);
-  drive(121.21);
-  wait(30,msec);
-  drive(-121.21);
-  turn(0);
-  drive(242.42);
   /*
   intake.setVelocity(100, pct);
   drive(-350); //Rush goal

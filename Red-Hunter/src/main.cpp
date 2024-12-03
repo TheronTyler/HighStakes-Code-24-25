@@ -163,17 +163,19 @@ void usercontrol(void) {
 while (1) {
   arm.setStopping(hold);
   //Drive
-  int rotational = Controller.Axis3.position(pct);
-  int lateral = Controller.Axis1.position(pct);
+  int rotational = Controller.Axis4.position(pct);
+  int lateral = Controller.Axis3.position(pct);
+  
+
 
   motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
   motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
-  
+ 
   //Intake
-  if (Controller.ButtonL1.pressing()) {
+  if (Controller.ButtonR1.pressing()) {
     intake.spin(fwd, 80, pct);
   }
-  else if (Controller.ButtonL2.pressing()) {
+  else if (Controller.ButtonL1.pressing()) {
     intake.spin(reverse, 80, pct);
   }
   else {
@@ -181,39 +183,34 @@ while (1) {
   }
 
   //Moble Goal
-  if (Controller.ButtonB.pressing()) {
+  if (Controller.ButtonR2.pressing()) {
     moGo.set(true);
   }
-  else if (Controller.ButtonDown.pressing()) {
+  else if (Controller.ButtonL2.pressing()) {
     moGo.set(false);
   }
 
   //Doinker
-  if (Controller.ButtonLeft.pressing()) {
+  if (Controller.ButtonA.pressing()) {
     doinker.set(true);
   }
-  else if (Controller.ButtonUp.pressing()) {
+  else if (Controller.ButtonX.pressing()) {
     doinker.set(false);
   }
 
-  //Wall Stake Expansion
-  if (Controller.ButtonX.pressing()){
-    wallStake.set(true);
-  }
-  else if (Controller.ButtonA.pressing()){
-    wallStake.set(false);
-  }
-  
   //Arm
-  if (Controller.ButtonR1.pressing()) {
+  if (Controller.ButtonA.pressing()) {
     arm.spin(fwd);
   }
-  else if (Controller.ButtonR2.pressing()) {
+  else if (Controller.ButtonX.pressing()) {
     arm.spin(reverse);
   }
   else {
     arm.stop();
   }
+
+  //Redirect
+
   wait(30, msec);
 
 }
