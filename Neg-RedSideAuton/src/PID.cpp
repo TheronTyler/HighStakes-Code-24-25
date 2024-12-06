@@ -29,7 +29,7 @@ void drive(float driveTarget){ //360 deg = 35.5" //1 deg = 0.099"
   float driveKp = .5; //needs tuned
   float driveKi = .0003; //needs tuned
   float driveKd = 1; //needs tuned
-  float driveError = driveTarget - (fLDrive.position(degrees)); 
+  float driveError = driveTarget - ((fLDrive.position(deg) + fRDrive.position(deg)) / 2); 
   
   while (fabs(driveError) > 100){
   driveError = driveTarget - (fLDrive.position(deg));

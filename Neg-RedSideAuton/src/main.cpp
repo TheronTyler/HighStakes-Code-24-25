@@ -53,7 +53,7 @@ void mind(char cmd,float delay,float revolutions) {
     motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
     break;
   case 'i': //intake
-    intake.setVelocity(100,pct);
+    intake.setVelocity(75,pct);
     intake.spinFor(fwd, revolutions, rev, false);
     wait(delay, sec);
     intake.stop();
@@ -62,7 +62,54 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
- arm.setStopping(coast);
+  wallStake.set(true); //Prep Robot
+  wait(200, msec);
+  mind('i', 1, -1); //outake ring to redirect
+  wait(0.000000000000000000001, msec);
+  arm.spinFor(2, rev);  //spin arm up
+  mind('w', 1.5, 0.17);  //drive forward to stake
+  arm.spinFor(-2, rev);  //spin redirect down
+  //wait(0.005, msec);
+  mind('w', 1.5, -0.75);
+  wait(5, msec);
+  arm.spinFor(-0.75, rev);
+  wallStake.set(false);
+  wait(0.000000000000000000001, msec);
+  moGo.set(true);
+
+  /*arm.spinFor(40, deg); //Score on Allience
+  turn(90);
+  drive(33);
+  arm.spinFor(-40, deg);
+  drive(-33);
+
+  turn(155); //Grab Mobile Goal
+  drive(294.08);
+  moGo.set(true);
+
+  turn(225); //Ring 1
+  intake.spinFor(fwd, 10, sec);
+  drive(182.53);
+
+  turn(230); //Ring 2
+  drive(121.69);
+  drive(-30.42);
+
+  turn(165); //RIng 3
+  drive(81.12);
+
+  drive(-517.18); //Touch ladder
+  turn(240);
+  drive(152.11);*/
+  
+
+
+
+
+
+
+
+ /*arm.setStopping(coast);
     mind('w',.75,-1.55); //Rush goal
     wait(25, msec);
     moGo.set(true);

@@ -1,6 +1,6 @@
 #include "vex.h"
 
-#include "setup.h"
+#include "robot-config.h"
 
 using namespace vex;
 
