@@ -63,19 +63,26 @@ void mind(char cmd,float delay,float revolutions) {
 
 void autonomous(void) {
   wallStake.set(true); //Prep Robot
+  intake.setVelocity(60, pct);
   wait(200, msec);
   mind('i', 1, -1); //outake ring to redirect
   wait(0.000000000000000000001, msec);
-  arm.spinFor(2, rev);  //spin arm up
-  mind('w', 1.5, 0.17);  //drive forward to stake
-  arm.spinFor(-2, rev);  //spin redirect down
+
+  arm.spinFor(2.5, rev);  //spin arm up
+  mind('w', 1.5, 0.18);  //drive forward to stake
+  arm.spinFor(-1.75, rev);  //spin redirect down
   //wait(0.005, msec);
-  mind('w', 1.5, -0.75);
-  wait(5, msec);
+
+  mind('w', 1, -0.1);
+   mind('a', 1.5, 0.02);
+   mind('s',3,-2); //Rush goal; figure this section out
+   wait(0.00005, msec);
+        moGo.set(true);
+
+  wait(0.0000000000000000000000000000000000000000000000000000000000001, msec);
   arm.spinFor(-0.75, rev);
-  wallStake.set(false);
-  wait(0.000000000000000000001, msec);
   moGo.set(true);
+
 
   /*arm.spinFor(40, deg); //Score on Allience
   turn(90);
