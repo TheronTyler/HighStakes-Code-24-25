@@ -69,19 +69,41 @@ void autonomous(void) {
   wait(0.000000000000000000001, msec);
 
   arm.spinFor(2.5, rev);  //spin arm up
+    mind('a', .5, -0.01);
   mind('w', 1.5, 0.18);  //drive forward to stake
   arm.spinFor(-1.75, rev);  //spin redirect down
   //wait(0.005, msec);
 
   mind('w', 1, -0.1);
-   mind('a', 1.5, 0.02);
-   mind('s',3,-2); //Rush goal; figure this section out
-   wait(0.00005, msec);
-        moGo.set(true);
+  mind('a', .5, -0.025);
+  mind('s',1.1,-1.2); //Rush goal
+  wait(0.00005, msec);
+  moGo.set(true);
 
   wait(0.0000000000000000000000000000000000000000000000000000000000001, msec);
-  arm.spinFor(-0.75, rev);
-  moGo.set(true);
+  //moGo.set(true);
+  wait(.25, sec);
+  mind('a', .43, -1);
+  wait(.25, sec);
+  intake.setVelocity(90, pct);
+  intake.spinTo(72000,deg, false);
+  mind('w', 1.2, .4);
+  wait(.4, sec);
+  mind('a', .35, -1);
+  wait(.4, sec);
+  mind('w', .4, 1);
+  wait(.7, sec);
+  mind('w', .2, -1);
+  wait(.25, sec);
+  mind('a', .2, 1);
+  mind('s', .3, 1);
+  mind('w', 1, -2);
+  mind('a', .37, -1);
+  mind('S', .65, 1.25);
+
+
+
+
 
 
   /*arm.spinFor(40, deg); //Score on Allience

@@ -1,0 +1,19 @@
+{
+	"extension": {
+		"version": "0.6.1",
+		"json": 2
+	},
+	"project": {
+		"name": "SAWP-Blue",
+		"description": "",
+		"creationDate": "12/7/2024, 10:27:56 AM",
+		"platform": "V5",
+		"language": "cpp",
+		"slot": 4,
+		"sdkVersion": "V5_20240802_15_00_00",
+		"cpp": {
+			"includePath": [],
+			"printf_float": true
+		}
+	}
+}
