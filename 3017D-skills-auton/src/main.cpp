@@ -83,7 +83,7 @@ void autonomous(void) {
   mind('w',.4,-.5); //goal
   moGo.set(true);
 
-  intake.spinFor(fwd, 60, rev, false); //first ring
+  intake.spinFor(fwd, 70, rev, false); //first ring
   wait(.5, sec);
   mind('a',1,0.87); 
 
@@ -92,7 +92,7 @@ void autonomous(void) {
   mind('a',1,-0.34);
 
   mind('w',1,.8); //third ring
-  wait(.3, sec);
+  wait(.5, sec);
   mind('a',1,-0.4);
 
   mind('S',3,0.65); //fourth ring
@@ -101,7 +101,7 @@ void autonomous(void) {
   mind('S',3,0.65); //fifth ring
   mind('w',1,-0.4); 
   mind('a',1,0.42);
-
+ 
   mind('w',1,0.4); //sixth ring
   wait(.3, sec);
   mind('w',1,-0.4);
@@ -111,9 +111,15 @@ void autonomous(void) {
   moGo.set(false); //goal in corner
   mind('w',1,0.4);
   mind('a',1,0.9);
-  mind('w',1,-3);
 
+  mind('w',1.5,-8); //Other corner
+  mind('a',.25,.125);
+  mind('w',1.5,-7);
+  /*moGo.set(true);
+  wait(.25, msec);
+  mind('a',1,.75);
 
+  mind('s',3,3); //first ring */
 }
 void usercontrol(void) {
 while (1) {

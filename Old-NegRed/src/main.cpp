@@ -62,25 +62,24 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
-  mind('w',.6,-1.3); //Rush goal
-  wait(5, msec);
+mind('w',.6,-1.3); //Rush goal
+wait(5, msec);
 moGo.set(true);
 
 mind('i',1,2.5); //score preload
 
-mind('a',.75,1.3125); //first stack
-intake.spinFor(fwd,40,rev,false);
-mind('w',2.5,1);
+mind('a',.25,1); //first stack
+wait(10,msec);
+intake.spinFor(fwd,70,rev,false);
+mind('w',.35,1);
 
-mind('a',1,1.75);//second stack
-mind('s',.2,.25);
+mind('a',.5,1.5);//second stack
+mind('s',.5,1);
 
 mind('a',.25,-.3);
 mind('s',.2,.125);
 
 mind('s',1.5,-3.3);//retreat to ladder
-  mind('a',.25,.5);
-  mind('s',1.5,2);
 }
 
 void usercontrol(void) {
