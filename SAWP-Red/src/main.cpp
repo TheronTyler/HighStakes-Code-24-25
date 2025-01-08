@@ -66,12 +66,12 @@ void autonomous(void) {
   mind('w',.3,1);
   mind('a',.35,-1);
   mind('s',.55,.5); //Score alliance stake
-  mind('s',.1,-.07);
+  mind('s',.13,-.07);
   arm.spinFor(reverse, .75, sec);
   
   mind('w',.5,-0.15); //grab goal
-  mind('a',.3,.055);
-  mind('w',.65,-1.4);
+  mind('a',.33,.055);
+  mind('w',.95,-1.4);
   moGo.set(true);
 
  // mind('a',.3,-.3);
