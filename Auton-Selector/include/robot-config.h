@@ -16,7 +16,7 @@ static motor mRDrive = motor(PORT4, ratio36_1);
 
 static motor intake = motor(PORT7);
 
-static motor arm = motor(PORT3);
+static motor arm = motor(PORT11);
 
 static inertial sense = inertial(PORT6);
 static rotation armAngle = rotation(PORT20);
@@ -27,4 +27,3 @@ static digital_out moGo = digital_out(Brain.ThreeWirePort.H);
 static digital_out doinker = digital_out(Brain.ThreeWirePort.G);
 
 static digital_out wallStake = digital_out(Brain.ThreeWirePort.F);
-
