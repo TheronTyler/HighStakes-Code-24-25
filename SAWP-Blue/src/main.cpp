@@ -62,177 +62,28 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
-  wallStake.set(true); //Prep Robot
-  intake.setVelocity(60, pct);
-  wait(200, msec);
-  mind('i', 1, -1); //outake ring to redirect
-  wait(0.000000000000000000001, msec);
-
-  arm.spinFor(2.5, rev);  //spin arm up
-    mind('a', .5, -0.01);
-  mind('w', 1.5, 0.18);  //drive forward to stake
-  arm.spinFor(-1.75, rev);  //spin redirect down
-  //wait(0.005, msec);
-
-  mind('w', 1, -0.1);
-  mind('a', .5, -0.025);
-  mind('s',1.1,-1.2); //Rush goal
-  wait(0.00005, msec);
-  moGo.set(true);
-
-  wait(0.0000000000000000000000000000000000000000000000000000000000001, msec);
-  //moGo.set(true);
-  wait(.25, sec);
-  mind('a', .43, -1);
-  wait(.25, sec);
-  intake.setVelocity(90, pct);
-  intake.spinTo(72000,deg, false);
-  mind('w', 1.2, .4);
-  wait(.4, sec);
-  mind('a', .35, -1);
-  wait(.4, sec);
-  mind('w', .4, 1);
-  wait(.7, sec);
-  mind('w', .2, -1);
-  wait(.25, sec);
-  mind('a', .2, 1);
-  mind('s', .3, 1);
-  mind('w', 1, -2);
-  mind('a', .37, -1);
-  mind('S', .65, 1.25);
-
-
-
-
-
-
-  /*arm.spinFor(40, deg); //Score on Allience
-  turn(90);
-  drive(33);
-  arm.spinFor(-40, deg);
-  drive(-33);
-
-  turn(155); //Grab Mobile Goal
-  drive(294.08);
-  moGo.set(true);
-
-  turn(225); //Ring 1
-  intake.spinFor(fwd, 10, sec);
-  drive(182.53);
-
-  turn(230); //Ring 2
-  drive(121.69);
-  drive(-30.42);
-
-  turn(165); //RIng 3
-  drive(81.12);
-
-  drive(-517.18); //Touch ladder
-  turn(240);
-  drive(152.11);*/
+  mind('w',.3,1);
+  mind('a',.35,1);
+  mind('s',.55,.5); //Score alliance stake
+  mind('s',.13,-.07);
+  arm.spinFor(reverse, .75, sec);
   
-
-
-
-
-
-
-
- /*arm.setStopping(coast);
-    mind('w',.75,-1.55); //Rush goal
-    wait(25, msec);
-    moGo.set(true);
-
-    mind('i',1,2.5); //score preload
-
-    mind('a',.7,.2); //first stack
-    intake.spinFor(fwd,40,rev,false);
-    mind('w',.5,.85);
-    mind('s',.25,.4);
-
-    wait(1, sec);
-    mind('S',.25,1);
-    mind('a',1.5,.5);//second stack
-    mind('s',.4,.9);
-
-    mind('a',.25,-.3);
-    mind('s',.2,.25);
-
-    mind('s',1.5,-2);//retreat to ladder
-/*  intake.spinFor(115, degrees); //on top of power button, works to score preload on alliance stake. could utilize in starting skills
-  drive(180); //Grab Goal
-  wait(250,msec);
-  turn(265);
-  wait(300,msec);
-  drive(-265);
-  //wait(100,msec);
+  mind('w',.5,-0.15); //grab goal
+  mind('a',.3,-.065);
+  mind('w',.95,-1.4);
   moGo.set(true);
+
+  mind('w',.25,.5); //Grab ring
+  mind('a',.4,.55);
   wait(100,msec);
-
-  turn(115); //Turn to 1st ring
-  intake.spinFor(fwd, 80, rev, false);//Spin intake for the rest of run
-  wait(200,msec);
-  drive(223); //Pickup 1st ring
-  wait(250,msec);
-
-  turn(100); //Turn to 2nd ring
-  wait(500,msec);
-  drive(223); //Pickup 2nd ring
-  wait(250,msec);
-
-  turn(240); //Pickup 3rd ring; in front of neutral stake
-  wait(250,msec);
-  drive(223); //Pickup 3rd ring
-  wait(500,msec);
-  drive(-233); //Backup to previous spot
-  wait(250,msec);
-
-  turn(40);//turn to 4th and 5th ring
-  wait(250,msec);
-  drive(223); //Pickup 4th ring
-  wait(1500,msec);
-  drive(130); //Pickup 5th ring
-  drive(-135);
-
-  turn(220); //Turn to 6th ring
-  drive(130); //Pickup 6th ring
-*/
-  /*wait(250,msec);
-  turn(90);
-  wait(250,msec);
-  drive(223);
-  wait(500,msec);
-  drive(112);*/
-  //drive();
-
- /* intake.spinFor(fwd, 60, rev, false); //Score Preload
-  wait(500, msec);
-
-  turn(280); //Fill Goal
-  wait(250,msec);
-
-  drive(200);
-  wait(350,msec);
-  drive(150);
+  intake.spinFor(fwd, 10, rev, false);
+  mind('w',.55,.85);
   wait(100,msec);
-
-  drive(-121.21);
-  wait(250,msec);
-
-  turn(90);
-  wait(250,msec);
-
-  drive(130);
-  wait(250,msec);
-
-  drive(-121.21);
-  wait(250,msec);
- 
-  turn(5);
-  wait(250,msec);
-
-  drive(242.42);
-  wait(250,msec);*/
+  mind('a',.4,-.475);
+  wait(100,msec);
+  doinker.set(true);
+  mind('w',.7,1);
+  mind('a',.2,-.6);
 }
 
 void usercontrol(void) {

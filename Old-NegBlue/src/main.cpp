@@ -17,7 +17,7 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
-arm.setVelocity(60,pct);
+arm.setVelocity(90,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);

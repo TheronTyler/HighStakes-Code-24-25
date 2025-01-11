@@ -70,11 +70,21 @@ void autonomous(void) {
   arm.spinFor(reverse, .75, sec);
   
   mind('w',.5,-0.15); //grab goal
-  mind('a',.33,.055);
+  mind('a',.3,.065);
   mind('w',.95,-1.4);
   moGo.set(true);
 
- // mind('a',.3,-.3);
+  mind('w',.25,.5); //Grab ring
+  mind('a',.4,-.55);
+  wait(100,msec);
+  intake.spinFor(fwd, 10, rev, false);
+  mind('w',.55,.85);
+  wait(100,msec);
+  mind('a',.4,.475);
+  wait(100,msec);
+  doinker.set(true);
+  mind('w',.7,1);
+  mind('a',.2,.6);
 } 
 
 void usercontrol(void) {
