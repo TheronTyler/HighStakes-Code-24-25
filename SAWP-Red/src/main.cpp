@@ -26,6 +26,25 @@ intake.setStopping(coast);
 arm.setStopping(brake);
 }
 
+void colorSort() {
+  bool colorSort;
+  colorSort = true;
+  while (colorSort) {
+    intake.spin(fwd);
+    while (true) {
+      while (!(aiColor.objects[aiColor_objectIndex].id == blueRing)) {
+        aiColor.takeSnapshot(aivision::ALL_AIOBJS);
+        wait(5, msec);
+      }
+      if (aiColor.objects[AIVision1_objectIndex].id == blueRing) {
+        wait(1.0, seconds);
+        intake.stop();
+      }
+    }
+  intake.spin(fwd);
+  }
+}
+
 void mind(char cmd,float delay,float revolutions) {
   switch (cmd) {
   case 'w': //forward motion
