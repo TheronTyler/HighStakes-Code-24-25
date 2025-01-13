@@ -73,13 +73,13 @@ wait(10,msec);
 intake.spinFor(fwd,70,rev,false);
 mind('w',.35,1);
 
-mind('a',.5,1.5);//second stack
+mind('a',.5,.275);//second stack
 mind('s',.5,1);
 
 mind('a',.25,-.3);
 mind('s',.2,.125);
 
-mind('s',1.5,-3.3);//retreat to ladder
+mind('s',1.5,-2);//retreat to ladder
 }
 
 void usercontrol(void) {

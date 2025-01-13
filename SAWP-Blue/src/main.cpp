@@ -63,27 +63,26 @@ void mind(char cmd,float delay,float revolutions) {
 
 void autonomous(void) {
   mind('w',.3,1);
-  mind('a',.35,1);
+  mind('a',.35,1.1);
   mind('s',.55,.5); //Score alliance stake
   mind('s',.13,-.07);
   arm.spinFor(reverse, .75, sec);
-  
+
   mind('w',.5,-0.15); //grab goal
-  mind('a',.3,-.065);
+  wallStake.set(true);
+  wait(10,msec);
+  mind('a',.4,-.075);
+  wait(10,msec);
   mind('w',.95,-1.4);
+  wait(10,msec);
   moGo.set(true);
 
   mind('w',.25,.5); //Grab ring
-  mind('a',.4,.55);
+  wait(10,msec);
+  mind('a',.5,.55);
   wait(100,msec);
   intake.spinFor(fwd, 10, rev, false);
   mind('w',.55,.85);
-  wait(100,msec);
-  mind('a',.4,-.475);
-  wait(100,msec);
-  doinker.set(true);
-  mind('w',.7,1);
-  mind('a',.2,-.6);
 }
 
 void usercontrol(void) {

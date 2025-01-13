@@ -22,7 +22,7 @@ arm.setVelocity(90,pct);
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-arm.setStopping(coast);
+arm.setStopping(hold);
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -85,22 +85,22 @@ void autonomous(void) {
 
   intake.spinFor(fwd, 70, rev, false); //first ring
   wait(.5, sec);
-  mind('a',1,0.87); 
+  mind('a',1,0.45); 
 
-  mind('w',1,.7); //second ring
+  mind('w',1,.54); //second ring
   wait(.5, sec);
-  mind('a',1,-0.34);
+  mind('a',1,-0.2);
 
-  mind('w',1,.8); //third ring
+  mind('w',1,.45); //third ring
   wait(.5, sec);
-  mind('a',1,-0.4);
+  mind('a',1,-0.17);
 
-  mind('S',3,0.65); //fourth ring
+  mind('S',3,0.325); //fourth ring
   wait(.3, sec);
 
-  mind('S',3,0.65); //fifth ring
-  mind('w',1,-0.4); 
-  mind('a',1,0.42);
+  mind('S',3,0.325); //fifth ring
+  mind('w',1,-0.25); 
+  mind('a',1,0.22);
  
   mind('w',1,0.4); //sixth ring
   wait(.3, sec);
