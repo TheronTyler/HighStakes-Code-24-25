@@ -20,16 +20,10 @@ static motor arm = motor(PORT11);
 
 static inertial sense = inertial(PORT6);
 static rotation armAngle = rotation(PORT20);
-static aivision aiColor = aivision(PORT10);
+static optical color_sort = optical(PORT12);
 
 static digital_out moGo = digital_out(Brain.ThreeWirePort.H);
 
 static digital_out doinker = digital_out(Brain.ThreeWirePort.G);
 
 static digital_out wallStake = digital_out(Brain.ThreeWirePort.F);
-
-// Create a new Color Signature "Red" with the colordesc class.
-aivision::colordesc Red = aivision::colordesc(1, 207, 19, 25, 10.00, 0.20);
-// Create a new AI Vision Sensor "ai_vision" with the AiVision
-// class, with the "Red' Colordesc.
-aivision aiColor = aivision(Ports.Port10, aiVision__Red);

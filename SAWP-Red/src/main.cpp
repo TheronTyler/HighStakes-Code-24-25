@@ -6,9 +6,10 @@
 /*    Description:  V5 project                                                */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
-
 #include "robot-config.h"
 #include "PID.h"
+#include "colorSort.h"
+#include "wallLoad.h"
 //#include "turnHeading.h"
 
 using namespace vex;
@@ -24,25 +25,9 @@ arm.setVelocity(50,pct);
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
 arm.setStopping(brake);
-}
 
-void colorSort() {
-  bool colorSort;
-  colorSort = true;
-  while (colorSort) {
-    intake.spin(fwd);
-    while (true) {
-      while (!(aiColor.objects[aiColor_objectIndex].id == blueRing)) {
-        aiColor.takeSnapshot(aivision::ALL_AIOBJS);
-        wait(5, msec);
-      }
-      if (aiColor.objects[AIVision1_objectIndex].id == blueRing) {
-        wait(1.0, seconds);
-        intake.stop();
-      }
-    }
-  intake.spin(fwd);
-  }
+//Optical
+color_sort.setLightPower(100, pct);
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -82,6 +67,10 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
+vex::thread colorThread(colorSort); //Starts the color sorting intake
+
+drive(200);                                                                                 
+  /*
   mind('w',.3,1);
   mind('a',.35,-1);
   mind('s',.55,.5); //Score alliance stake
@@ -104,6 +93,7 @@ void autonomous(void) {
   doinker.set(true);
   mind('w',.7,1);
   mind('a',.2,.6);
+  */
 } 
 
 void usercontrol(void) {
