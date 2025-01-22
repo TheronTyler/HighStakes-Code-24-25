@@ -23,15 +23,16 @@ void turn(float turnTarget){
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, 0, pct);
 }
 
-void drive(float driveTarget){ //360 deg = 35.5" //1 deg = 0.099"
-  fLDrive.setPosition(0, degrees);
+void drive(float driveTarget){ //  (DISTANCE / 35.5)*360
+  fLDrive.setPosition(0, deg);
+  fRDrive.setPosition(0, deg);
 
   float driveKp = .15; //needs tuned
   float driveKi = .255; //needs tuned
   float driveKd = .25; //needs tuned
   float driveError = driveTarget - ((fLDrive.position(deg) + fRDrive.position(deg)) / 2); 
   
-  while (fabs(driveError) > 80){
+  while (fabs(driveError) > 10){
   driveError = driveTarget - (fLDrive.position(deg));
   float previousDriveError = driveError;
   float driveP = driveKp * driveError;

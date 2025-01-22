@@ -24,7 +24,7 @@ arm.setVelocity(50,pct);
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-arm.setStopping(brake);
+arm.setStopping(hold);
 
 //Optical
 color_sort.setLightPower(100, pct);
@@ -67,9 +67,59 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
-vex::thread colorThread(colorSort); //Starts the color sorting intake
+arm.setStopping(hold);
 
-drive(200);                                                                                 
+//Doinker Alliance ring stack
+doinker.set(true);
+
+turn(90);
+doinker.set(false);
+wait(75,msec);
+turn(273);
+wait(75,msec);
+
+//Pre-Load on alliance stake
+drive(120); //10" 
+wait(250, msec);
+turn(265);
+drive(50); //3"
+arm.spinFor(-.75, rev, false);
+wait(3, msec);
+drive(-60.85); //6"
+arm.spinFor(.25, rev);
+
+//Grab mobile stake
+turn(145);
+drive(-250.31); //41.94"
+wait(350, msec);
+moGo.set(true);
+wait(350, msec);
+
+//Pick-up Doinked Ring
+turn(230);
+vex::thread this_thread(colorSort); //Starts the color sorting intake
+drive(100);
+wait(1000, msec);
+
+//Pick-up Solo Stack
+turn(250);
+drive(125); //24"
+
+//intake 2 red from 4-grid
+turn(270);
+drive(100);
+wait(50, msec);
+drive(-10.14); //1"
+turn(210);
+drive(10.14); //1"
+wait(50, msec);
+drive(-10.14); //1"
+turn(165);
+
+//Sweep and intake corner rings
+drive(-608.45);
+turn(90);
+
   /*
   mind('w',.3,1);
   mind('a',.35,-1);
