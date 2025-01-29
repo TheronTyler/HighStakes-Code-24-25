@@ -9,6 +9,7 @@
 
 #include "robot-config.h"
 #include "PID.h"
+#include "colorSort.h"
 //#include "turnHeading.h"
 
 using namespace vex;
@@ -62,7 +63,50 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
-  mind('w',.3,1);
+arm.setStopping(hold);
+
+//Pre-Load on alliance stake
+drive(120); //10" 
+wait(250, msec);
+turn(95);
+drive(50); //3"
+arm.spinFor(-.75, rev, false);
+wait(3, msec);
+drive(-60.85); //6"
+arm.spinFor(.25, rev);
+
+//Grab mobile stake
+turn(215);
+drive(-250.31); //41.94"
+wait(350, msec);
+moGo.set(true);
+wait(350, msec);
+
+//Pick-up Doinked Ring
+turn(130);
+vex::thread this_thread(colorSort); //Starts the color sorting intake
+drive(100);
+wait(1000, msec);
+
+//Pick-up Solo Stack
+turn(110);
+drive(125); //24"
+
+//intake 2 red from 4-grid
+turn(90);
+drive(100);
+wait(50, msec);
+drive(-10.14); //1"
+turn(150);
+drive(10.14); //1"
+wait(50, msec);
+drive(-10.14); //1"
+turn(195);
+
+//Sweep and intake corner rings
+drive(-608.45);
+turn(270);
+  /*mind('w',.3,1);
   mind('a',.35,1.1);
   mind('s',.55,.5); //Score alliance stake
   mind('s',.13,-.07);
@@ -82,7 +126,7 @@ void autonomous(void) {
   mind('a',.5,.55);
   wait(100,msec);
   intake.spinFor(fwd, 10, rev, false);
-  mind('w',.55,.85);
+  mind('w',.55,.85);*/
 }
 
 void usercontrol(void) {
