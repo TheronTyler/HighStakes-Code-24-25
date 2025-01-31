@@ -86,64 +86,31 @@ drive(50); //3"
 arm.spinFor(-.75, rev, false);
 wait(3, msec);
 drive(-60.85); //6"
-arm.spinFor(.25, rev);
+arm.spinFor(.75, rev, false);
 
 //Grab mobile stake
 turn(145);
 drive(-250.31); //41.94"
-wait(350, msec);
 moGo.set(true);
 wait(350, msec);
 
 //Pick-up Doinked Ring
 turn(230);
 vex::thread this_thread(colorSort); //Starts the color sorting intake
-drive(100);
+drive(125);
 wait(1000, msec);
 
 //Pick-up Solo Stack
-turn(250);
+turn(240);
 drive(125); //24"
-
-//intake 2 red from 4-grid
 turn(270);
 drive(100);
-wait(50, msec);
-drive(-10.14); //1"
-turn(210);
-drive(10.14); //1"
-wait(50, msec);
-drive(-10.14); //1"
-turn(165);
+wait(500, msec);
 
-//Sweep and intake corner rings
-drive(-608.45);
-turn(90);
+//Touch Ladder
+turn(260);
+drive(260);
 
-  /*
-  mind('w',.3,1);
-  mind('a',.35,-1);
-  mind('s',.55,.5); //Score alliance stake
-  mind('s',.13,-.07);
-  arm.spinFor(reverse, .75, sec);
-  
-  mind('w',.5,-0.15); //grab goal
-  mind('a',.3,.065);
-  mind('w',.95,-1.4);
-  moGo.set(true);
-
-  mind('w',.25,.5); //Grab ring
-  mind('a',.4,-.55);
-  wait(100,msec);
-  intake.spinFor(fwd, 10, rev, false);
-  mind('w',.55,.85);
-  wait(100,msec);
-  mind('a',.4,.475);
-  wait(100,msec);
-  doinker.set(true);
-  mind('w',.7,1);
-  mind('a',.2,.6);
-  */
 } 
 
 void usercontrol(void) {

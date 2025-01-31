@@ -13,6 +13,7 @@
 //#include "turnHeading.h"
 
 using namespace vex;
+using namespace std;
 
 // A global instance of competition
 void pre_auton(void) {
@@ -75,7 +76,7 @@ arm.setStopping(hold);
 //Score on alliance stake
 arm.spinFor(reverse, .5, sec);
 wait(1, msec);
-drive(-90);
+drive(-85);
 arm.spinFor(fwd, .5, sec);
 
 //Grab First Goal
@@ -85,26 +86,60 @@ drive(-140);
 moGo.set(true);
 wait(30, msec);
 
-//Collect Corner
+//First Corner
 //First Ring
-turn(80); 
-thread myThread(colorSort);
+turn(85); 
+thread colorThread(colorSort);
 drive(160);
 
 //Second Ring
-turn(120);
+turn(110);
 drive(180);
 
 //third/fourth ring
-turn(90);
-drive(162);
-wait(350,msec);
-drive(131);
+turn(95);
+drive(140);
+wait(500, msec);
+drive(122);
 
 //5th ring
 drive(-177);
 turn(215);
-drive(68);
+drive(75);
+
+//Goal in Corner
+turn(270);
+turn(250);
+drive(-131.83);
+moGo.set(false);
+
+//Second Corner
+//Grab Goal
+drive(80);
+turn(67);
+wait(500, msec);
+drive(-225);
+drive(-260);
+wait(400, msec);
+drive(-100);
+moGo.set(true);
+wait(250, msec);
+
+//First Ring
+turn(272.5);
+drive(150);
+
+//Second Ring
+turn(250);
+drive(110);
+
+//third/fourth ring
+turn(250);
+drive(140);
+wait(500, msec);
+drive(122);
+
+
 }
 
 void usercontrol(void) {
