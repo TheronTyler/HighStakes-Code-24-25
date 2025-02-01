@@ -2,14 +2,17 @@
 #include "vex.h"
 
 void turn(float turnTarget){
-  sense.setHeading(180, degrees);
+  sense1.setHeading(180, degrees);
+  sense2.setHeading(180, degrees);
+
   float turnKp = .25; //needs tuned
   float turnKi = .27; //needs tuned
   float turnKd = .35; //needs tuned
-  float turnError = turnTarget - sense.heading();
+  //float average = (sense1.heading() + sense2.heading()) / 2;
+  float turnError = turnTarget - sense1.heading();
   
   while(fabs(turnError) > 3){
-  turnError = turnTarget - sense.heading();
+  turnError = turnTarget - sense1.heading();
   float previousTurnError = turnError;
   float turnP = turnKp * turnError;
   float turnI = turnI + (.02 * turnError * turnKi);

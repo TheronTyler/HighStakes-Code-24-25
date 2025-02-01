@@ -18,7 +18,9 @@ static motor intake = motor(PORT7);
 
 static motor arm = motor(PORT11);
 
-static inertial sense = inertial(PORT6);
+static inertial sense1 = inertial(PORT6);
+static inertial sense2 = inertial(PORT1);
+
 static rotation armAngle = rotation(PORT20);
 static optical color_sort = optical(PORT12);
 

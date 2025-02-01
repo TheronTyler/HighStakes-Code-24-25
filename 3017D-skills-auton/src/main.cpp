@@ -31,7 +31,10 @@ arm.setStopping(hold);
 color_sort.setLightPower(100, pct);
 
 //PID
-sense.calibrate();
+sense1.calibrate();
+sense1.setHeading(1, degrees);
+sense2.setHeading(1, degrees);
+
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -80,7 +83,7 @@ drive(-85);
 arm.spinFor(fwd, .5, sec);
 
 //Grab First Goal
-turn(90);
+turn(95);
 wait(10, msec);
 drive(-140);
 moGo.set(true);
@@ -88,35 +91,35 @@ wait(30, msec);
 
 //First Corner
 //First Ring
-turn(85); 
+turn(100); 
 thread colorThread(colorSort);
 drive(160);
 
 //Second Ring
-turn(110);
+turn(115);
 drive(180);
 
 //third/fourth ring
-turn(95);
+turn(155);
 drive(140);
 wait(500, msec);
 drive(122);
 
 //5th ring
 drive(-177);
-turn(215);
+turn(220);
 drive(75);
 
 //Goal in Corner
-turn(270);
-turn(250);
+turn(275);
+turn(25);
 drive(-131.83);
 moGo.set(false);
 
 //Second Corner
 //Grab Goal
 drive(80);
-turn(67);
+turn(77);
 wait(500, msec);
 drive(-225);
 drive(-260);
@@ -149,8 +152,8 @@ while (1) {
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);
 
-  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
-  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
+  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,(lateral*0.5) + rotational,pct);
+  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,(lateral*0.5) - rotational,pct);
   
   //Intake
   if (Controller.ButtonL1.pressing()) {
