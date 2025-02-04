@@ -28,6 +28,10 @@ arm.setStopping(hold);
 
 //Optical
 color_sort.setLightPower(100, pct);
+
+//PID
+sense.calibrate();
+sense.setHeading(1, degrees);
 }
 
 void mind(char cmd,float delay,float revolutions) {
@@ -75,27 +79,27 @@ doinker.set(true);
 turn(90);
 doinker.set(false);
 wait(75,msec);
-turn(273);
+turn(268);
 wait(75,msec);
 
 //Pre-Load on alliance stake
-drive(120); //10" 
+drive(110); //10" 
 wait(250, msec);
-turn(265);
-drive(50); //3"
+turn(270);
+drive(60); //3"
 arm.spinFor(-.75, rev, false);
 wait(3, msec);
 drive(-60.85); //6"
 arm.spinFor(.75, rev, false);
 
 //Grab mobile stake
-turn(145);
+turn(146.5);
 drive(-250.31); //41.94"
 moGo.set(true);
 wait(350, msec);
 
 //Pick-up Doinked Ring
-turn(230);
+turn(220);
 vex::thread this_thread(colorSort); //Starts the color sorting intake
 drive(125);
 wait(1000, msec);
@@ -104,7 +108,7 @@ wait(1000, msec);
 turn(240);
 drive(125); //24"
 turn(270);
-drive(100);
+drive(150);
 wait(500, msec);
 
 //Touch Ladder
@@ -120,8 +124,8 @@ while (1) {
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);
 
-  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
-  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
+  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,(lateral)*.5 + rotational,pct);
+  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,(lateral)*.5 - rotational,pct);
   
   //Intake
   if (Controller.ButtonL1.pressing()) {

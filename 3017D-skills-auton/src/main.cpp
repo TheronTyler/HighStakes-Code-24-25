@@ -83,7 +83,7 @@ drive(-85);
 arm.spinFor(fwd, .5, sec);
 
 //Grab First Goal
-turn(95);
+turn(90);
 wait(10, msec);
 drive(-140);
 moGo.set(true);
@@ -91,7 +91,7 @@ wait(30, msec);
 
 //First Corner
 //First Ring
-turn(100); 
+turn(90); 
 thread colorThread(colorSort);
 drive(160);
 
@@ -100,28 +100,37 @@ turn(115);
 drive(180);
 
 //third/fourth ring
-turn(155);
+turn(103);
 drive(140);
-wait(500, msec);
-drive(122);
+wait(550, msec);
+drive(135);
+wait(150,msec);
+drive(10);
 
 //5th ring
 drive(-177);
-turn(220);
-drive(75);
+turn(210);
+drive(90);
 
 //Goal in Corner
 turn(275);
-turn(25);
-drive(-131.83);
+turn(223);
+drive(-75);
 moGo.set(false);
 
 //Second Corner
-//Grab Goal
+//Wall Reset
 drive(80);
-turn(77);
+turn(75);
 wait(500, msec);
 drive(-225);
+turn(270);
+drive(-30);
+wait(150,msec);
+drive(20);
+
+//Grab Goal
+turn(90);
 drive(-260);
 wait(400, msec);
 drive(-100);
@@ -129,12 +138,12 @@ moGo.set(true);
 wait(250, msec);
 
 //First Ring
-turn(272.5);
+turn(247.5);
 drive(150);
 
 //Second Ring
-turn(250);
-drive(110);
+turn(244);
+drive(160);
 
 //third/fourth ring
 turn(250);
@@ -148,6 +157,7 @@ drive(122);
 void usercontrol(void) {
 while (1) {
   arm.setStopping(hold);
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
   //Drive
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);

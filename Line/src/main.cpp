@@ -31,24 +31,7 @@ sense.setHeading(1, degrees);
 }
 
 void autonomous(void) {
-arm.setStopping(hold);
-
-//goal
-drive(-200);
-moGo.set(true);
-wait(100, msec);
-vex::thread colorThread(colorSort);
-wait(100, msec);
-
-//grab ring
-turn(230);
-drive(200);
-wait(200, msec);
-
-//touch ladder
-turn(20);
-turn(150);
-drive(270); 
+drive(60);
 }
 
 void usercontrol(void) {

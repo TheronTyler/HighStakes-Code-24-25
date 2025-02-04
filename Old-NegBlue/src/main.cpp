@@ -100,8 +100,8 @@ while (1) {
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);
 
-  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,lateral + rotational,pct);
-  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,lateral - rotational,pct);
+  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,(lateral)*.5 + rotational,pct);
+  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,(lateral)*.5 - rotational,pct);
   
   //Intake
   if (Controller.ButtonL1.pressing()) {

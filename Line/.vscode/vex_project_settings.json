@@ -1,16 +1,16 @@
 {
 	"extension": {
-		"version": "0.6.0",
+		"version": "0.6.1",
 		"json": 2
 	},
 	"project": {
-		"name": "3017D-skills-auton",
+		"name": "Line",
 		"description": "",
-		"creationDate": "11/3/2024, 11:46:03 AM",
+		"creationDate": "2/1/2025, 8:57:29 AM",
 		"platform": "V5",
 		"language": "cpp",
-		"slot": 3,
-		"sdkVersion": "V5_20240223_11_00_00",
+		"slot": 6,
+		"sdkVersion": "V5_20240802_15_00_00",
 		"cpp": {
 			"includePath": [],
 			"printf_float": true
