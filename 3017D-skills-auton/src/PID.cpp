@@ -5,7 +5,7 @@ void turn(float turnTarget){
   sense1.setHeading(180, degrees);
   sense2.setHeading(180, degrees);
 
-  float turnKp = .19; //needs tuned
+  float turnKp = .25; //needs tuned
   float turnKi = .27; //needs tuned
   float turnKd = .35; //needs tuned
   //float average = (sense1.heading() + sense2.heading()) / 2;
@@ -15,7 +15,7 @@ void turn(float turnTarget){
   turnError = turnTarget - sense1.heading();
   float previousTurnError = turnError;
   float turnP = turnKp * turnError;
-  float turnI = turnI + (.02 * turnError * turnKi);
+  float turnI = turnI + (.03 * turnError * turnKi);
   float turnD = turnKd * (turnError - previousTurnError)/1;
 
     motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  (turnP  + turnI + turnD), pct);
@@ -42,7 +42,7 @@ void drive(float driveTarget){ //  (DISTANCE / 35.5)*360
   float driveI = driveI + (.02 * driveError * driveKi);
   float driveD = driveKd * (driveError - previousDriveError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, (driveP + driveI + driveD)*1.1, pct);
+    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, (driveP + driveI + driveD)*1.15, pct);
     wait (20, msec);
   }
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);

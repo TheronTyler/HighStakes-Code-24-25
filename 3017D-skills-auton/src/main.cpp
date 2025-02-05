@@ -92,7 +92,7 @@ wait(30, msec);
 //First Corner
 //First Ring
 turn(90); 
-thread colorThread(colorSort);
+intake.spin(fwd);
 drive(160);
 
 //Second Ring
@@ -113,44 +113,96 @@ turn(210);
 drive(90);
 
 //Goal in Corner
-turn(275);
+turn(250);
+wait(100,msec);
 turn(223);
 drive(-75);
 moGo.set(false);
+intake.stop();
 
 //Second Corner
 //Wall Reset
 drive(80);
 turn(75);
-wait(500, msec);
-drive(-225);
-turn(270);
-drive(-30);
+wait(250, msec);
+drive(-260);
+turn(245);
+
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(reverse, 500, rev, false);
+wait(1, sec);
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
+
 wait(150,msec);
-drive(20);
+drive(125);
 
 //Grab Goal
-turn(90);
-drive(-260);
+turn(103);
+drive(-240);
 wait(400, msec);
-drive(-100);
+drive(-60);
 moGo.set(true);
 wait(250, msec);
 
 //First Ring
-turn(247.5);
+turn(240);
+intake.spin(fwd);
 drive(150);
 
 //Second Ring
-turn(244);
-drive(160);
+turn(240);
+drive(200);
 
 //third/fourth ring
 turn(250);
 drive(140);
 wait(500, msec);
-drive(122);
+drive(130);
 
+//Fith Ring
+drive(-150);
+turn(155);
+drive(90);
+
+//Goal in Corner
+turn(120);
+wait(100,msec);
+turn(100);
+drive(-90);
+moGo.set(false);
+intake.stop();
+
+//Load Wall Stake Mech
+arm.spinFor(fwd, .5, rev, false);
+
+drive(260);
+turn(110);
+
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(reverse, 500, rev, false);
+wait(1, sec);
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
+
+wait(100,msec);
+drive(62);
+turn(260);
+
+intake.spin(fwd);
+drive(120);
+wait(400,msec);
+intake.stop();
+arm.spinFor(reverse, .4, rev, false);
+
+//Third Goal
+turn(130);
+intake.spin(fwd);
+drive(200);
+wait(50,msec);
+drive(100);
+intake.stop();
+turn(90);
+wait(150,msec);
+turn(90);
+drive(-160);
+moGo.set(true);
 
 }
 
