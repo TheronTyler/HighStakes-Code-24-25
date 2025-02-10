@@ -34,86 +34,40 @@ sense.calibrate();
 sense.setHeading(1, degrees);
 }
 
-void mind(char cmd,float delay,float revolutions) {
-  switch (cmd) {
-  case 'w': //forward motion
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(60, pct);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(fwd, revolutions, rev, false);
-    wait(delay, sec);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-    break;
-  case 's': //slow forward motion
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(35, pct);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(fwd, revolutions, rev, false);
-    wait(delay, sec);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-    break;
-  case 'S': //super slow forward motion
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(15, pct);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(fwd, revolutions, rev, false);
-    wait(delay, sec);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-    break;
-  case 'a': //clockwise turn
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setVelocity(70, pct);
-    motor_group(fLDrive, bLDrive, mLDrive ).spinFor(fwd, revolutions, rev, false);
-    motor_group(fRDrive, bRDrive, mRDrive).spinFor(reverse, revolutions, rev, false);
-    wait(delay, sec);
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-    break;
-  case 'i': //intake
-    intake.setVelocity(75,pct);
-    intake.spinFor(fwd, revolutions, rev, false);
-    wait(delay, sec);
-    intake.stop();
-    break;
-  }
-}
-
 void autonomous(void) {
 arm.setStopping(hold);
 
 //Doinker Alliance ring stack
+turn(225);
+wait(100,msec);
 doinker.set(true);
-
-turn(90);
+turn(275);
 doinker.set(false);
-wait(75,msec);
-turn(268);
-wait(75,msec);
+turn(50);
 
 //Pre-Load on alliance stake
 drive(110); //10" 
-wait(250, msec);
-turn(270);
-drive(60); //3"
+wait(150, msec);
+turn(97);
+drive(50); //3"
 arm.spinFor(-.75, rev, false);
-wait(3, msec);
 drive(-60.85); //6"
 arm.spinFor(.75, rev, false);
 
-//Grab mobile stake
-turn(146.5);
-drive(-250.31); //41.94"
+//goal grab
+turn(218);
+drive(-235);
+drive(-70);
 moGo.set(true);
-wait(350, msec);
 
-//Pick-up Doinked Ring
-turn(220);
-vex::thread this_thread(colorSort); //Starts the color sorting intake
-drive(125);
-wait(1000, msec);
+//Intake Donked Ring
+turn(140);
+thread this_thread(colorSort);
+drive(80);
 
-//Pick-up Solo Stack
-turn(240);
-drive(125); //24"
-turn(270);
-drive(150);
-wait(500, msec);
-
-//Touch Ladder
-turn(260);
-drive(260);
+//4 Grid
+turn(55);
+drive(200);
 
 } 
 

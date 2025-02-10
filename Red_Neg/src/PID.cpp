@@ -39,7 +39,7 @@ void drive(float driveTarget){ //  (DISTANCE / 35.5)*360
   float driveI = driveI + (.02 * driveError * driveKi);
   float driveD = driveKd * (driveError - previousDriveError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, (driveP + driveI + driveD)*1, pct);
+    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, (driveP + driveI + driveD)*1.3, pct);
     wait (20, msec);
   }
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
