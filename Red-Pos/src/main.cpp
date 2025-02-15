@@ -39,39 +39,11 @@ sense.setHeading(1, degrees);
 void autonomous(void) {
 arm1.setStopping(hold);
 arm2.setStopping(hold);
-
-//Doinker Alliance ring stack
-turn(225);
-wait(100,msec);
-doinker.set(true);
-turn(275);
-doinker.set(false);
-turn(50);
-
-//Pre-Load on alliance stake
-drive(110); //10" 
-wait(150, msec);
-turn(97);
-drive(50); //3"
-motor_group(arm1, arm2).spinFor(-.75, rev, false);
-drive(-60.85); //6"
-motor_group(arm1, arm2).spinFor(.75, rev, false);
-
-//goal grab
-turn(218);
-drive(-235);
-drive(-70);
+drive(305);
+motor_group(arm1, arm2).spinFor(-0.5, rev);
+turn(223);
+drive(-122);
 moGo.set(true);
-
-//Intake Donked Ring
-turn(140);
-thread this_thread(colorSort);
-drive(80);
-
-//4 Grid
-turn(55);
-drive(200);
-
 } 
 
 void usercontrol(void) {

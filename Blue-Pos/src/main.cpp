@@ -19,14 +19,12 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
-arm1.setVelocity(50,pct);
-arm2.setVelocity(50,pct);
+motor_group(arm1, arm2).setVelocity(50,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-arm1.setStopping(hold);
-arm2.setStopping(hold);
+motor_group(arm1, arm2).setStopping(hold);
 
 //Optical
 color_sort.setLightPower(100, pct);
@@ -37,47 +35,36 @@ sense.setHeading(1, degrees);
 }
 
 void autonomous(void) {
-arm1.setStopping(hold);
-arm2.setStopping(hold);
+motor_group(arm1, arm2).setStopping(hold);
 
-//Doinker Alliance ring stack
-turn(225);
-wait(100,msec);
-doinker.set(true);
-turn(275);
-doinker.set(false);
-turn(50);
+//Goal Rush
+drive(295);
+motor_group(arm1, arm2).spinFor(-0.75, rev);
 
-//Pre-Load on alliance stake
-drive(110); //10" 
-wait(150, msec);
-turn(97);
-drive(50); //3"
-motor_group(arm1, arm2).spinFor(-.75, rev, false);
-drive(-60.85); //6"
-motor_group(arm1, arm2).spinFor(.75, rev, false);
-
-//goal grab
-turn(218);
-drive(-235);
-drive(-70);
+//Grab Second Goal
+turn(150);
+drive(-147);
 moGo.set(true);
 
-//Intake Donked Ring
-turn(140);
-thread this_thread(colorSort);
-drive(80);
+//Lift arm
+motor_group(arm1, arm2).spinFor(0.75, rev, false);
 
-//4 Grid
-turn(55);
-drive(200);
+//Grab Ring
+turn(160);
+thread colorThread(colorSort);
+drive(145);
+wait(2,sec);
+threadRunning = false;
 
+//Touch Ladder
+turn(297);
+drive(195);
 } 
 
 void usercontrol(void) {
 while (1) {
-  arm1.setStopping(hold);
-  arm2.setStopping(hold);
+  motor_group(arm1, arm2).setStopping(hold);
+  
   //Drive
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);

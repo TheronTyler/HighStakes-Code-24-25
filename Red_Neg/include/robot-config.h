@@ -16,7 +16,8 @@ static motor mRDrive = motor(PORT4, ratio36_1);
 
 static motor intake = motor(PORT7);
 
-static motor arm = motor(PORT11);
+static motor arm1 = motor(PORT11);
+static motor arm2 = motor(PORT20, true);
 
 static inertial sense = inertial(PORT6);
 static rotation armAngle = rotation(PORT20);

@@ -20,12 +20,14 @@ void pre_auton(void) {
 
 //Speed
 intake.setVelocity(95,pct);
-arm.setVelocity(50,pct);
+arm1.setVelocity(50,pct);
+arm2.setVelocity(50,pct);
 
 //Stopping
 motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
 intake.setStopping(coast);
-arm.setStopping(hold);
+arm1.setStopping(hold);
+arm2.setStopping(hold);
 
 //Optical
 color_sort.setLightPower(100, pct);
@@ -74,13 +76,14 @@ void mind(char cmd,float delay,float revolutions) {
 }
 
 void autonomous(void) {
-arm.setStopping(hold);
+arm1.setStopping(hold);
+arm2.setStopping(hold);
 
 //Score on alliance stake
-arm.spinFor(reverse, .5, sec);
+motor_group(arm1, arm2).spinFor(reverse, .5, sec);
 wait(1, msec);
 drive(-85);
-arm.spinFor(fwd, .5, sec);
+motor_group(arm1, arm2).spinFor(fwd, .5, sec);
 
 //Grab First Goal
 turn(90);
@@ -116,7 +119,7 @@ drive(90);
 turn(250);
 wait(100,msec);
 turn(223);
-drive(-75);
+drive(-85);
 moGo.set(false);
 intake.stop();
 
@@ -144,12 +147,12 @@ moGo.set(true);
 wait(250, msec);
 
 //First Ring
-turn(240);
+turn(245);
 intake.spin(fwd);
 drive(150);
 
 //Second Ring
-turn(240);
+turn(238);
 drive(200);
 
 //third/fourth ring
@@ -167,12 +170,12 @@ drive(90);
 turn(120);
 wait(100,msec);
 turn(100);
-drive(-90);
+drive(-100);
 moGo.set(false);
 intake.stop();
 
 //Load Wall Stake Mech
-arm.spinFor(fwd, .5, rev, false);
+motor_group(arm1, arm2).spinFor(fwd, .5, rev, false);
 
 drive(260);
 turn(110);
@@ -189,14 +192,14 @@ intake.spin(fwd);
 drive(120);
 wait(400,msec);
 intake.stop();
-arm.spinFor(reverse, .4, rev, false);
+motor_group(arm1, arm2).spinFor(reverse, .4, rev, false);
 
 //Third Goal
 turn(130);
 intake.spin(fwd);
 drive(200);
 wait(50,msec);
-drive(100);
+drive(125);
 intake.stop();
 turn(90);
 wait(150,msec);
@@ -208,7 +211,8 @@ moGo.set(true);
 
 void usercontrol(void) {
 while (1) {
-  arm.setStopping(hold);
+  arm1.setStopping(hold);
+  arm2.setStopping(hold);
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
   //Drive
   int rotational = Controller.Axis3.position(pct);
@@ -254,13 +258,13 @@ while (1) {
   
   //Arm
   if (Controller.ButtonR1.pressing()) {
-    arm.spin(fwd);
+    motor_group(arm1, arm2).spin(fwd);
   }
   else if (Controller.ButtonR2.pressing()) {
-    arm.spin(reverse);
+    motor_group(arm1, arm2).spin(reverse);
   }
   else {
-    arm.stop();
+    motor_group(arm1, arm2).stop();
   }
   wait(30, msec);
 
