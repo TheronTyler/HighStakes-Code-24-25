@@ -13,6 +13,7 @@
 //#include "turnHeading.h"
 
 using namespace vex;
+using namespace std;
 
 // A global instance of competition
 void pre_auton(void) {
@@ -32,58 +33,159 @@ arm2.setStopping(hold);
 color_sort.setLightPower(100, pct);
 
 //PID
-sense.calibrate();
-sense.setHeading(1, degrees);
+sense1.calibrate();
+sense1.setHeading(1, degrees);
+sense2.setHeading(1, degrees);
+
 }
 
 void autonomous(void) {
 arm1.setStopping(hold);
 arm2.setStopping(hold);
 
-//Pre-Load on alliance stake
-drive(115); //10" 
-wait(150, msec);
-intake.spinTo(1800, degrees, false);
-turn(100);
-drive(60); //3"
-motor_group(arm1, arm2).spinFor(-.75, rev, false);
-drive(-60.85); //6"
-motor_group(arm1, arm2).spinFor(.5, rev, false);
-wait(150,msec);
+//Score on alliance stake
+motor_group(arm1, arm2).spinFor(reverse, .5, sec);
+wait(1, msec);
+drive(-85);
+motor_group(arm1, arm2).spinFor(fwd, .5, sec);
 
-//goal grab
-turn(215);
-drive(-250);
+//Grab First Goal
+turn(90);
+wait(10, msec);
+drive(-140);
 moGo.set(true);
+wait(30, msec);
 
-//4 grid
-turn(270);
-wait(100, msec);
-turn(250);
-thread this_thread(colorSort);
-drive(60);
-turn(195);
-drive(55);
-.
-//single stack
-drive(-75);
-turn(220);
+//First Corner
+//First Ring
+turn(90); 
+intake.spin(fwd);
+drive(160);
+
+//Second Ring
+turn(115);
+drive(180);
+
+//third/fourth ring
+turn(103);
+drive(140);
+wait(550, msec);
+drive(135);
+wait(150,msec);
+drive(10);
+
+//5th ring
+drive(-177);
+turn(210);
 drive(90);
 
+//Goal in Corner
+turn(250);
+wait(100,msec);
+turn(223);
+drive(-85);
+moGo.set(false);
+intake.stop();
 
-} 
+//Second Corner
+//Wall Reset
+drive(80);
+turn(75);
+wait(250, msec);
+drive(-260);
+turn(245);
+
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(reverse, 500, rev, false);
+wait(1, sec);
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
+
+wait(150,msec);
+drive(125);
+
+//Grab Goal
+turn(102.5);
+wait(200,msec);
+drive(-240);
+wait(400, msec);
+drive(-100);
+moGo.set(true);
+drive(65);
+wait(250, msec);
+
+//First Ring
+turn(245);
+intake.spin(fwd);
+drive(150);
+
+//Second Ring
+turn(230);
+drive(200);
+
+//third/fourth ring
+turn(260);
+drive(140);
+wait(500, msec);
+drive(130);
+
+//Fith Ring
+drive(-150);
+turn(152);
+drive(90);
+
+//Goal in Corner
+turn(120);
+wait(100,msec);
+turn(90);
+drive(-100);
+moGo.set(false);
+intake.stop();
+
+//Load Wall Stake Mech
+motor_group(arm1, arm2).spinFor(fwd, .5, rev, false);
+
+drive(260);
+turn(110);
+
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(reverse, 500, rev, false);
+wait(1, sec);
+motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
+
+wait(100,msec);
+drive(62);
+turn(260);
+
+intake.spin(fwd);
+drive(120);
+wait(400,msec);
+intake.stop();
+motor_group(arm1, arm2).spinFor(reverse, .4, rev, false);
+
+//Third Goal
+turn(130);
+intake.spin(fwd);
+drive(200);
+wait(50,msec);
+drive(125);
+intake.stop();
+turn(90);
+wait(150,msec);
+turn(90);
+drive(-160);
+moGo.set(true);
+
+}
 
 void usercontrol(void) {
 while (1) {
   arm1.setStopping(hold);
   arm2.setStopping(hold);
-  threadRunning = false;
+  motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);
   //Drive
   int rotational = Controller.Axis3.position(pct);
   int lateral = Controller.Axis1.position(pct);
 
-  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,(lateral)*.5 + rotational,pct);
-  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,(lateral)*.5 - rotational,pct);
+  motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,(lateral*0.5) + rotational,pct);
+  motor_group(fRDrive, bRDrive, mRDrive).spin(reverse,(lateral*0.5) - rotational,pct);
   
   //Intake
   if (Controller.ButtonL1.pressing()) {
@@ -96,14 +198,7 @@ while (1) {
     intake.stop();
   }
 
-  //Moble Goal
-  if (Controller.ButtonB.pressing()) {
-    moGo.set(true);
-  }
-  else if (Controller.ButtonDown.pressing()) {
-    moGo.set(false);
-  }
-
+  
   //Doinker
   if (Controller.ButtonLeft.pressing()) {
     doinker.set(true);

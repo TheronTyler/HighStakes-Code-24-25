@@ -17,3 +17,18 @@ void colorSort() {
   }
   intake.stop();
 }
+
+bool load = true;
+
+void loadIntake() {
+intake.setVelocity(95, pct);  
+
+while(load) {
+  intake.spin(fwd);
+  
+  if (color_sort.color() == red){
+    intake.stop();
+    wait(10, sec);
+  }
+  }
+}

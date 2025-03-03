@@ -2,20 +2,23 @@
 #include "vex.h"
 
 void turn(float turnTarget){
-  sense.setHeading(180, degrees);
+  sense1.setHeading(180, degrees);
+  sense2.setHeading(180, degrees);
+
   float turnKp = .25; //needs tuned
   float turnKi = .27; //needs tuned
   float turnKd = .35; //needs tuned
-  float turnError = turnTarget - sense.heading();
+  //float average = (sense1.heading() + sense2.heading()) / 2;
+  float turnError = turnTarget - sense1.heading();
   
   while(fabs(turnError) > 3){
-  turnError = turnTarget - sense.heading();
+  turnError = turnTarget - sense1.heading();
   float previousTurnError = turnError;
   float turnP = turnKp * turnError;
-  float turnI = turnI + (.02 * turnError * turnKi);
+  float turnI = turnI + (.03 * turnError * turnKi);
   float turnD = turnKd * (turnError - previousTurnError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  1*(turnP  + turnI + turnD), pct);
+    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  (turnP  + turnI + turnD), pct);
     motor_group(fRDrive, bRDrive, mRDrive).spin(fwd,  -1*(turnP  + turnI + turnD), pct);
     wait (20, msec);
   }
@@ -24,8 +27,8 @@ void turn(float turnTarget){
 }
 
 void drive(float driveTarget){ //  (DISTANCE / 35.5)*360
-  fLDrive.setPosition(0, deg);
-  fRDrive.setPosition(0, deg);
+  fLDrive.setPosition(0.5, deg);
+  fRDrive.setPosition(0.5, deg);
 
   float driveKp = .15; //needs tuned
   float driveKi = .255; //needs tuned
@@ -39,7 +42,7 @@ void drive(float driveTarget){ //  (DISTANCE / 35.5)*360
   float driveI = driveI + (.02 * driveError * driveKi);
   float driveD = driveKd * (driveError - previousDriveError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, 2*(driveP + driveI + driveD)*1.3, pct);
+    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, (driveP + driveI + driveD)*1.15, pct);
     wait (20, msec);
   }
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);

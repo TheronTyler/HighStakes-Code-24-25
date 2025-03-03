@@ -39,15 +39,18 @@ sense.setHeading(1, degrees);
 void autonomous(void) {
 arm1.setStopping(hold);
 arm2.setStopping(hold);
-drive(305);
-motor_group(arm1, arm2).spinFor(-0.5, rev);
-turn(223);
-drive(-122);
-moGo.set(true);
+
+intake.setPosition(0, rev);
+intake.spinTo(2, rev, false);
+drive(315);
+wait(200, msec);
+motor_group(arm1, arm2).spinFor(-0.75, rev, false);
+drive(-40);
 } 
 
 void usercontrol(void) {
 while (1) {
+  threadRunning = false;
   arm1.setStopping(hold);
   arm2.setStopping(hold);
   //Drive

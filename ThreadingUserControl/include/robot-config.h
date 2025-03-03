@@ -19,14 +19,11 @@ static motor intake = motor(PORT7);
 static motor arm1 = motor(PORT11);
 static motor arm2 = motor(PORT20, true);
 
-static inertial sense = inertial(PORT6);
+static inertial sense1 = inertial(PORT6);
+static inertial sense2 = inertial(PORT1);
+
 static rotation armAngle = rotation(PORT20);
 static optical color_sort = optical(PORT12);
-
-static distance disBR = distance(PORT19);
-static distance disBL = distance(PORT13);
-
-
 
 static digital_out moGo = digital_out(Brain.ThreeWirePort.H);
 

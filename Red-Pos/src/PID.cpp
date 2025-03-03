@@ -15,7 +15,7 @@ void turn(float turnTarget){
   float turnI = turnI + (.02 * turnError * turnKi);
   float turnD = turnKd * (turnError - previousTurnError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  (turnP  + turnI + turnD), pct);
+    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  1*(turnP  + turnI + turnD), pct);
     motor_group(fRDrive, bRDrive, mRDrive).spin(fwd,  -1*(turnP  + turnI + turnD), pct);
     wait (20, msec);
   }
@@ -39,7 +39,7 @@ void drive(float driveTarget){ //  (DISTANCE / 35.5)*360
   float driveI = driveI + (.02 * driveError * driveKi);
   float driveD = driveKd * (driveError - previousDriveError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, (driveP + driveI + driveD)*1.3, pct);
+    motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spin(fwd, 2*(driveP + driveI + driveD)*1.3, pct);
     wait (20, msec);
   }
   motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).setStopping(brake);

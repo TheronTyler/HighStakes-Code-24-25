@@ -2,23 +2,22 @@
 #include "vex.h"
 
 void turn(float turnTarget){
-  sense1.setHeading(180, degrees);
-  sense2.setHeading(180, degrees);
+  sense.setHeading(180, degrees);
 
   float turnKp = .25; //needs tuned
   float turnKi = .27; //needs tuned
   float turnKd = .35; //needs tuned
   //float average = (sense1.heading() + sense2.heading()) / 2;
-  float turnError = turnTarget - sense1.heading();
+  float turnError = turnTarget - sense.heading();
   
   while(fabs(turnError) > 3){
-  turnError = turnTarget - sense1.heading();
+  turnError = turnTarget - sense.heading();
   float previousTurnError = turnError;
   float turnP = turnKp * turnError;
-  float turnI = turnI + (.03 * turnError * turnKi);
+  float turnI = turnI + (.02 * turnError * turnKi);
   float turnD = turnKd * (turnError - previousTurnError)/1;
 
-    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  (turnP  + turnI + turnD), pct);
+    motor_group(fLDrive, bLDrive, mLDrive).spin(fwd,  1*(turnP  + turnI + turnD), pct);
     motor_group(fRDrive, bRDrive, mRDrive).spin(fwd,  -1*(turnP  + turnI + turnD), pct);
     wait (20, msec);
   }

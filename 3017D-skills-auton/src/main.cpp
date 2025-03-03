@@ -10,7 +10,7 @@
 #include "PID.h"
 #include "colorSort.h"
 #include "wallLoad.h"
-//#include "turnHeading.h"
+#include "wallreset.h"
 
 using namespace vex;
 using namespace std;
@@ -33,9 +33,9 @@ arm2.setStopping(hold);
 color_sort.setLightPower(100, pct);
 
 //PID
-sense1.calibrate();
-sense1.setHeading(1, degrees);
-sense2.setHeading(1, degrees);
+sense.calibrate();
+sense.setHeading(1, degrees);
+sense.setHeading(1, degrees);
 
 }
 
@@ -86,127 +86,45 @@ drive(-85);
 motor_group(arm1, arm2).spinFor(fwd, .5, sec);
 
 //Grab First Goal
-turn(90);
+turn(92);
 wait(10, msec);
-drive(-140);
+drive(-180);
 moGo.set(true);
 wait(30, msec);
 
-//First Corner
-//First Ring
-turn(90); 
-intake.spin(fwd);
-drive(160);
+//first ring
+turn(86);
+wall(0);
+intake.spinFor(fwd, 100, rev, false);
+drive(170);
 
-//Second Ring
-turn(115);
-drive(180);
-
-//third/fourth ring
+//second ring
 turn(103);
-drive(140);
-wait(550, msec);
-drive(135);
-wait(150,msec);
-drive(10);
+wait(75,msec);
+drive(170);
 
-//5th ring
-drive(-177);
-turn(210);
-drive(90);
-
-//Goal in Corner
-turn(250);
-wait(100,msec);
-turn(223);
-drive(-85);
-moGo.set(false);
-intake.stop();
-
-//Second Corner
-//Wall Reset
-drive(80);
-turn(75);
-wait(250, msec);
-drive(-260);
-turn(245);
-
-motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(reverse, 500, rev, false);
-wait(1, sec);
-motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-
-wait(150,msec);
-drive(125);
-
-//Grab Goal
-turn(103);
-drive(-240);
-wait(400, msec);
-drive(-60);
-moGo.set(true);
-wait(250, msec);
-
-//First Ring
-turn(245);
-intake.spin(fwd);
-drive(150);
-
-//Second Ring
-turn(238);
-drive(200);
-
-//third/fourth ring
-turn(250);
-drive(140);
-wait(500, msec);
+//3-4 ring
+turn(110);
+drive(130);
 drive(130);
 
-//Fith Ring
-drive(-150);
-turn(155);
-drive(90);
+//5 ring
+drive(-130);
+turn(215);
+drive(70);
 
-//Goal in Corner
-turn(120);
-wait(100,msec);
-turn(100);
-drive(-100);
+//goal in corner
+turn(270);
+turn(240);
+drive(-75);
 moGo.set(false);
-intake.stop();
 
-//Load Wall Stake Mech
-motor_group(arm1, arm2).spinFor(fwd, .5, rev, false);
-
-drive(260);
-turn(110);
-
-motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).spinFor(reverse, 500, rev, false);
-wait(1, sec);
-motor_group(fLDrive, bLDrive, mLDrive, fRDrive, bRDrive, mRDrive).stop();
-
-wait(100,msec);
-drive(62);
-turn(260);
-
-intake.spin(fwd);
-drive(120);
-wait(400,msec);
-intake.stop();
-motor_group(arm1, arm2).spinFor(reverse, .4, rev, false);
-
-//Third Goal
-turn(130);
-intake.spin(fwd);
-drive(200);
-wait(50,msec);
-drive(125);
-intake.stop();
+//first wall reset
+drive(60);
+turn(240);
+drive(350);
 turn(90);
-wait(150,msec);
-turn(90);
-drive(-160);
-moGo.set(true);
-
+wall(0);
 }
 
 void usercontrol(void) {
